@@ -30,6 +30,8 @@
 
 @protocol DDHidQueueDelegate;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface DDHidQueue : NSObject
 {
     IOHIDQueueInterface ** mQueue;
@@ -40,14 +42,14 @@
     CFRunLoopSourceRef mEventSource;
 }
 
-- (instancetype) initWithHIDQueue: (IOHIDQueueInterface **) queue
+- (nullable instancetype) initWithHIDQueue: (IOHIDQueueInterface *__nonnull*__nonnull) queue
                              size: (unsigned) size;
 
 - (void) addElement: (DDHidElement *) element;
 
-- (void) addElements: (NSArray *) elements;
+- (void) addElements: (NSArray<DDHidElement*> *) elements;
 
-- (void) addElements: (NSArray *) elements recursively: (BOOL) recursively;
+- (void) addElements: (NSArray<DDHidElement*> *) elements recursively: (BOOL) recursively;
 
 @property (assign) id<DDHidQueueDelegate> delegate;
 
@@ -60,7 +62,7 @@
 
 - (BOOL) getNextEvent: (IOHIDEventStruct *) event;
 
-- (DDHidEvent *) nextEvent;
+- (nullable DDHidEvent *) nextEvent;
 
 @end
 
@@ -71,3 +73,5 @@
 - (void) ddhidQueueHasEvents: (DDHidQueue *) hidQueue;
 
 @end
+
+NS_ASSUME_NONNULL_END

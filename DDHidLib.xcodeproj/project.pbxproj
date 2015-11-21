@@ -93,6 +93,14 @@
 		55D593870BAE3BB700364849 /* DDHidStandardUsages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55917F760B54535B005308AC /* DDHidStandardUsages.plist */; };
 		55DCD9C60B55D35D000648E5 /* WatcherWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DCD9C50B55D35D000648E5 /* WatcherWindowController.m */; };
 		55DCD9E00B55D503000648E5 /* EventWatcher.nib in Resources */ = {isa = PBXBuildFile; fileRef = 55DCD9DE0B55D503000648E5 /* EventWatcher.nib */; };
+		55E6A1321C00E31500285593 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E6A1311C00E31500285593 /* AppDelegate.swift */; };
+		55E6A1341C00E31500285593 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55E6A1331C00E31500285593 /* Assets.xcassets */; };
+		55E6A13D1C00E35200285593 /* EventWatcher.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E6A13C1C00E35200285593 /* EventWatcher.xib */; };
+		55E6A13F1C00E39D00285593 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E6A13E1C00E39D00285593 /* MainMenu.xib */; };
+		55E6A1401C00E40400285593 /* DDHidLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55193E500B93F2EE004C0C98 /* DDHidLib.framework */; };
+		55E6A1411C00E40400285593 /* DDHidLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 55193E500B93F2EE004C0C98 /* DDHidLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		55E6A1451C00E68700285593 /* HexFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 55917E1B0B53E454005308AC /* HexFormatter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		55E6A14A1C00E75100285593 /* WatcherWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E6A1491C00E75100285593 /* WatcherWindowController.swift */; };
 		55FC9FDB0BB76D8D0095FC7B /* DDHidKeyboardBarcodeScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 55FC9FD90BB76D8D0095FC7B /* DDHidKeyboardBarcodeScanner.h */; };
 		55FC9FDC0BB76D8D0095FC7B /* DDHidKeyboardBarcodeScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FC9FDA0BB76D8D0095FC7B /* DDHidKeyboardBarcodeScanner.m */; };
 		55FC9FDD0BB76D8D0095FC7B /* DDHidKeyboardBarcodeScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 55FC9FD90BB76D8D0095FC7B /* DDHidKeyboardBarcodeScanner.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -149,6 +157,13 @@
 			remoteGlobalIDString = 55193E4F0B93F2EE004C0C98;
 			remoteInfo = DDHidLib;
 		};
+		55E6A1421C00E40400285593 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 55193E4F0B93F2EE004C0C98;
+			remoteInfo = DDHidLib;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -172,6 +187,17 @@
 				55D593660BAE3B5D00364849 /* DDHidLib.framework in Copy Files to Frameworks */,
 			);
 			name = "Copy Files to Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55E6A1441C00E40400285593 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				55E6A1411C00E40400285593 /* DDHidLib.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -236,6 +262,14 @@
 		55DCD9C40B55D35D000648E5 /* WatcherWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatcherWindowController.h; sourceTree = "<group>"; };
 		55DCD9C50B55D35D000648E5 /* WatcherWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatcherWindowController.m; sourceTree = "<group>"; };
 		55DCD9DF0B55D503000648E5 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/EventWatcher.nib; sourceTree = "<group>"; };
+		55E6A12F1C00E31500285593 /* HIDBrowser-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HIDBrowser-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		55E6A1311C00E31500285593 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		55E6A1331C00E31500285593 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		55E6A1381C00E31600285593 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		55E6A13C1C00E35200285593 /* EventWatcher.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EventWatcher.xib; path = "HIDBrowser-Swift/EventWatcher.xib"; sourceTree = SOURCE_ROOT; };
+		55E6A13E1C00E39D00285593 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = "HIDBrowser-Swift/MainMenu.xib"; sourceTree = SOURCE_ROOT; };
+		55E6A1481C00E6E600285593 /* Bridging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridging.h; sourceTree = "<group>"; };
+		55E6A1491C00E75100285593 /* WatcherWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatcherWindowController.swift; sourceTree = "<group>"; };
 		55FC9FD90BB76D8D0095FC7B /* DDHidKeyboardBarcodeScanner.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = DDHidKeyboardBarcodeScanner.h; sourceTree = "<group>"; };
 		55FC9FDA0BB76D8D0095FC7B /* DDHidKeyboardBarcodeScanner.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = DDHidKeyboardBarcodeScanner.m; sourceTree = "<group>"; };
 		55FD65C90B5DD57200325FEF /* DeviceTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceTestController.h; sourceTree = "<group>"; };
@@ -278,6 +312,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55E6A12C1C00E31500285593 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55E6A1401C00E40400285593 /* DDHidLib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +375,7 @@
 				559CBAE10B5B313000C8FD74 /* HIDDeviceTest.app */,
 				559CBBCC0B5B336600C8FD74 /* libddhid.a */,
 				55193E500B93F2EE004C0C98 /* DDHidLib.framework */,
+				55E6A12F1C00E31500285593 /* HIDBrowser-Swift.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -344,6 +387,7 @@
 				559CBAA10B5B2F4400C8FD74 /* browser */,
 				55917B4C0B533C53005308AC /* lib */,
 				55BE6DC90B8033010085514D /* vendor */,
+				55E6A1301C00E31500285593 /* HIDBrowser-Swift */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				55D592200BAE2E4500364849 /* versions.xcconfig */,
@@ -490,6 +534,21 @@
 			path = NSXReturnThrowError;
 			sourceTree = "<group>";
 		};
+		55E6A1301C00E31500285593 /* HIDBrowser-Swift */ = {
+			isa = PBXGroup;
+			children = (
+				55E6A1311C00E31500285593 /* AppDelegate.swift */,
+				55E6A1491C00E75100285593 /* WatcherWindowController.swift */,
+				55E6A1331C00E31500285593 /* Assets.xcassets */,
+				55E6A13E1C00E39D00285593 /* MainMenu.xib */,
+				55E6A13C1C00E35200285593 /* EventWatcher.xib */,
+				55E6A1381C00E31600285593 /* Info.plist */,
+				55E6A1481C00E6E600285593 /* Bridging.h */,
+			);
+			path = "HIDBrowser-Swift";
+			sourceTree = "<group>";
+			usesTabs = 1;
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -594,6 +653,25 @@
 			productReference = 559CBBCC0B5B336600C8FD74 /* libddhid.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		55E6A12E1C00E31500285593 /* HIDBrowser-Swift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 55E6A13B1C00E31600285593 /* Build configuration list for PBXNativeTarget "HIDBrowser-Swift" */;
+			buildPhases = (
+				55E6A12B1C00E31500285593 /* Sources */,
+				55E6A12C1C00E31500285593 /* Frameworks */,
+				55E6A12D1C00E31500285593 /* Resources */,
+				55E6A1441C00E40400285593 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				55E6A1431C00E40400285593 /* PBXTargetDependency */,
+			);
+			name = "HIDBrowser-Swift";
+			productName = "HIDBrowser-Swift";
+			productReference = 55E6A12F1C00E31500285593 /* HIDBrowser-Swift.app */;
+			productType = "com.apple.product-type.application";
+		};
 		8D1107260486CEB800E47090 /* HIDBrowser */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "HIDBrowser" */;
@@ -620,7 +698,13 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0710;
+				TargetAttributes = {
+					55E6A12E1C00E31500285593 = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
+				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "DDHidLib" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -628,6 +712,7 @@
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* HIDBrowser */;
 			projectDirPath = "";
@@ -635,6 +720,7 @@
 			targets = (
 				551711110B8F41EB00C82155 /* All */,
 				8D1107260486CEB800E47090 /* HIDBrowser */,
+				55E6A12E1C00E31500285593 /* HIDBrowser-Swift */,
 				559CBAE00B5B313000C8FD74 /* HIDDeviceTest */,
 				559CBBCB0B5B336600C8FD74 /* ddhid */,
 				55193E4F0B93F2EE004C0C98 /* DDHidLib */,
@@ -658,6 +744,16 @@
 				55170E670B8ECF0000C82155 /* AppleRemote.tiff in Resources */,
 				55D5927D0BAE306E00364849 /* InfoPlist.strings in Resources */,
 				55D592940BAE30B600364849 /* MainMenu.nib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55E6A12D1C00E31500285593 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55E6A1341C00E31500285593 /* Assets.xcassets in Resources */,
+				55E6A13D1C00E35200285593 /* EventWatcher.xib in Resources */,
+				55E6A13F1C00E39D00285593 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -733,6 +829,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		55E6A12B1C00E31500285593 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55E6A1451C00E68700285593 /* HexFormatter.m in Sources */,
+				55E6A1321C00E31500285593 /* AppDelegate.swift in Sources */,
+				55E6A14A1C00E75100285593 /* WatcherWindowController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D11072C0486CEB800E47090 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -771,6 +877,11 @@
 			isa = PBXTargetDependency;
 			target = 55193E4F0B93F2EE004C0C98 /* DDHidLib */;
 			targetProxy = 55D593600BAE3B3300364849 /* PBXContainerItemProxy */;
+		};
+		55E6A1431C00E40400285593 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 55193E4F0B93F2EE004C0C98 /* DDHidLib */;
+			targetProxy = 55E6A1421C00E40400285593 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -845,6 +956,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEFINES_MODULE = YES;
@@ -875,6 +987,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEFINES_MODULE = YES;
@@ -993,6 +1106,94 @@
 			};
 			name = Release;
 		};
+		55E6A1391C00E31600285593 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "HIDBrowser-Swift/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github.maddthesane.HIDBrowser-Swift";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "HIDBrowser-Swift/Bridging.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		55E6A13A1C00E31600285593 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "HIDBrowser-Swift/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github.maddthesane.HIDBrowser-Swift";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "HIDBrowser-Swift/Bridging.h";
+			};
+			name = Release;
+		};
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 55D592200BAE2E4500364849 /* versions.xcconfig */;
@@ -1097,6 +1298,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		55E6A13B1C00E31600285593 /* Build configuration list for PBXNativeTarget "HIDBrowser-Swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55E6A1391C00E31600285593 /* Debug */,
+				55E6A13A1C00E31600285593 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "HIDBrowser" */ = {
 			isa = XCConfigurationList;

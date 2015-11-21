@@ -29,7 +29,7 @@
 
 + (NSString*)format:(long)number;
 {
-    return [NSString stringWithFormat: @"0x%02X", number];
+    return [NSString stringWithFormat: @"0x%02lX", number];
 }
 
 

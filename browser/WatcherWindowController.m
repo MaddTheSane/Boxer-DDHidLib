@@ -98,6 +98,10 @@
 
 @end
 
+@interface WatcherWindowController () <DDHidQueueDelegate>
+
+@end
+
 @implementation WatcherWindowController
 
 - (id) init
