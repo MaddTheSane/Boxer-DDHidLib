@@ -69,20 +69,8 @@
 //=========================================================== 
 //  mikeys
 //=========================================================== 
-- (NSArray *) mikeys
-{
-    return mMikeys;
-}
-
-- (void) setMikeys: (NSArray *) theMikeys
-{
-    if (mMikeys != theMikeys)
-    {
-        [mMikeys release];
-        mMikeys = [theMikeys retain];
-    }
-}
-//=========================================================== 
+@synthesize mikeys = mMikeys;
+//===========================================================
 //  mikeyIndex
 //=========================================================== 
 - (NSUInteger) mikeyIndex

@@ -88,7 +88,7 @@
     return mKeyElements;
 }
 
-- (unsigned) numberOfKeys;
+- (NSInteger) numberOfKeys;
 {
     return [mKeyElements count];
 }
@@ -100,11 +100,7 @@
 
 #pragma mark -
 #pragma mark Asynchronous Notification
-
-- (void) setDelegate: (id) delegate;
-{
-    mDelegate = delegate;
-}
+@synthesize delegate = mDelegate;
 
 - (void) addElementsToDefaultQueue;
 {

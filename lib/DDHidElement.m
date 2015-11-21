@@ -36,9 +36,7 @@
 
     NSMutableArray * elements = [NSMutableArray array];
     
-    NSDictionary * properties;
-    NSEnumerator * e = [propertiesArray objectEnumerator];
-    while (properties = [e nextObject])
+    for (NSDictionary *properties in propertiesArray)
     {
         DDHidElement * element = [DDHidElement elementWithProperties: properties];
         [elements addObject: element];
@@ -114,10 +112,7 @@
     return [mProperties ddhid_unsignedIntForString: kIOHIDElementCookieKey];
 }
 
-- (DDHidUsage *) usage;
-{
-    return mUsage;
-}
+@synthesize usage = mUsage;
 
 - (NSArray *) elements;
 {

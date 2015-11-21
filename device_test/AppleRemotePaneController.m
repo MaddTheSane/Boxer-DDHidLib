@@ -132,7 +132,7 @@
             buttonName = @"Remote Control Paired";
             break;
 		default:
-			NSLog(@"Unmapped event for button %d", buttonIdentifier); 
+			NSLog(@"Unmapped event for button %ld", (long)buttonIdentifier);
 			break;
 	}	
 	[mFeedbackText setStringValue:[NSString stringWithFormat:@"%@ %@",

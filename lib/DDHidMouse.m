@@ -32,7 +32,7 @@
 
 // Implement our own delegate methods
 
-@interface DDHidMouse (DDHidMouseDelegate)
+@interface DDHidMouse () <DDHidMouseDelegate>
 
 - (void) ddhidMouse: (DDHidMouse *) mouse xChanged: (SInt32) deltaX;
 - (void) ddhidMouse: (DDHidMouse *) mouse yChanged: (SInt32) deltaY;
@@ -42,7 +42,7 @@
 
 @end
 
-@interface DDHidMouse (Private)
+@interface DDHidMouse ()
 
 - (void) initMouseElements: (NSArray *) elements;
 - (void) ddhidQueueHasEvents: (DDHidQueue *) hidQueue;
@@ -93,26 +93,9 @@
 #pragma mark -
 #pragma mark Mouse Elements
 
-//=========================================================== 
-// - xElement
-//=========================================================== 
-- (DDHidElement *) xElement
-{
-    return mXElement; 
-}
-
-//=========================================================== 
-// - yElement
-//=========================================================== 
-- (DDHidElement *) yElement
-{
-    return mYElement; 
-}
-
-- (DDHidElement *) wheelElement;
-{
-    return mWheelElement;
-}
+@synthesize xElement = mXElement;
+@synthesize yElement = mYElement;
+@synthesize wheelElement = mWheelElement;
 
 //=========================================================== 
 // - buttonElements
@@ -122,7 +105,7 @@
     return mButtonElements; 
 }
 
-- (unsigned) numberOfButtons;
+- (NSInteger) numberOfButtons;
 {
     return [mButtonElements count];
 }
@@ -139,19 +122,12 @@
 #pragma mark -
 #pragma mark Asynchronous Notification
 
-- (void) setDelegate: (id) delegate;
-{
-    mDelegate = delegate;
-}
+@synthesize delegate = mDelegate;
 
 - (void) addElementsToDefaultQueue;
 {
     [self addElementsToQueue: mDefaultQueue];
 }
-
-@end
-
-@implementation DDHidMouse (DDHidMouseDelegate)
 
 - (void) ddhidMouse: (DDHidMouse *) mouse xChanged: (SInt32) deltaX;
 {
@@ -182,10 +158,6 @@
     if ([mDelegate respondsToSelector: _cmd])
         [mDelegate ddhidMouse: mouse buttonUp: buttonNumber];
 }
-
-@end
-
-@implementation DDHidMouse (Private)
 
 - (void) initMouseElements: (NSArray *) elements;
 {
@@ -251,7 +223,7 @@
         }
         else
         {
-            unsigned i = 0;
+            NSInteger i = 0;
             for (i = 0; i < [[self buttonElements] count]; i++)
             {
                 if (cookie == [[[self buttonElements] objectAtIndex: i] cookie])

@@ -28,36 +28,38 @@
 @class DDHidElement;
 @class DDHidQueue;
 
+@protocol DDHidAppleMikeyDelegate;
+
 @interface DDHidAppleMikey : DDHidDevice
 {
     NSMutableArray * mPressElements;
     
-    id mDelegate;
+    id<DDHidAppleMikeyDelegate> mDelegate;
 }
 
-+ (NSArray *) allMikeys;
++ (NSArray<DDHidAppleMikey*> *) allMikeys;
 
-- (id) initWithDevice: (io_object_t) device error: (NSError **) error_;
+- (instancetype) initWithDevice: (io_object_t) device error: (NSError **) error_;
 
 #pragma mark -
 #pragma mark Elements
 
-- (NSArray *) pressElements;
+@property (readonly, assign) NSArray<DDHidElement*> *pressElements;
 
-- (unsigned) numberOfKeys;
+@property (readonly) NSInteger numberOfKeys;
 
 - (void) addElementsToQueue: (DDHidQueue *) queue;
 
 #pragma mark -
 #pragma mark Asynchronous Notification
 
-- (void) setDelegate: (id) delegate;
+@property (assign) id<DDHidAppleMikeyDelegate> delegate;
 
 - (void) addElementsToDefaultQueue;
 
 @end
 
-@interface NSObject (DDHidAppleMikeyDelegate)
+@protocol DDHidAppleMikeyDelegate <NSObject>
 
 - (void) ddhidAppleMikey: (DDHidAppleMikey *) mikey
                    press: (unsigned) usageId

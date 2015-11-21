@@ -32,7 +32,7 @@
 #import "DDHidEvent.h"
 #import "NSDictionary+DDHidExtras.h"
 
-@interface DDHidAppleRemote (Private)
+@interface DDHidAppleRemote ()
 
 - (void) initRemoteElements: (NSArray *) elements;
 
@@ -146,10 +146,7 @@
 #pragma mark -
 #pragma mark Asynchronous Notification
 
-- (void) setDelegate: (id) delegate;
-{
-    mDelegate = delegate;
-}
+@synthesize delegate = mDelegate;
 
 - (void) addElementsToDefaultQueue;
 {
@@ -162,19 +159,8 @@
 //=========================================================== 
 //  remoteId 
 //=========================================================== 
-- (int) remoteId
-{
-    return mRemoteId;
-}
 
-- (void) setRemoteId: (int) theRemoteId
-{
-    mRemoteId = theRemoteId;
-}
-
-@end
-
-@implementation DDHidAppleRemote (Private)
+@synthesize remoteId = mRemoteId;
 
 - (void) initRemoteElements: (NSArray *) elements;
 {

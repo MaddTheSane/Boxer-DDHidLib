@@ -29,14 +29,14 @@
 #import "DDHidEvent.h"
 #include <IOKit/hid/IOHIDUsageTables.h>
 
-@interface DDHidKeyboardBarcodeScanner (DDHidKeyboardBarcodeDelegate)
+@interface DDHidKeyboardBarcodeScanner () <DDHidKeyboardBarcodeScannerDelegate>
 
 - (void) ddhidKeyboardBarcodeScanner: (DDHidKeyboardBarcodeScanner *) keyboardBarcodeScanner
                           gotBarcode: (NSString *) barcode;
 
 @end
 
-@interface DDHidKeyboardBarcodeScanner (Private)
+@interface DDHidKeyboardBarcodeScanner ()
 
 - (void) initKeyboardElements: (NSArray *) elements;
 - (void) ddhidQueueHasEvents: (DDHidQueue *) hidQueue;
@@ -98,7 +98,7 @@
     return mKeyElements;
 }
 
-- (NSUInteger) numberOfKeys;
+- (NSInteger) numberOfKeys;
 {
     return [mKeyElements count];
 }
@@ -110,11 +110,7 @@
 
 #pragma mark -
 #pragma mark Asynchronous Notification
-
-- (void) setDelegate: (id) delegate;
-{
-    mDelegate = delegate;
-}
+@synthesize delegate = mDelegate;
 
 - (void) addElementsToDefaultQueue;
 {
@@ -129,20 +125,12 @@
     return mIsLikelyKeyboardBarcodeScanner;
 }
 
-@end
-
-@implementation DDHidKeyboardBarcodeScanner (DDHidKeyboardDelegate)
-
 - (void) ddhidKeyboardBarcodeScanner: (DDHidKeyboardBarcodeScanner *) keyboardBarcodeScanner
                           gotBarcode: (NSString *) barcode;
 {
     if ([mDelegate respondsToSelector: _cmd])
         [mDelegate ddhidKeyboardBarcodeScanner: keyboardBarcodeScanner gotBarcode: barcode];
 }
-
-@end
-
-@implementation DDHidKeyboardBarcodeScanner (Private)
 
 - (void) initKeyboardElements: (NSArray *) elements;
 {

@@ -40,11 +40,9 @@
     DDHidAppleMikey * mCurrentMikey;
 }
 
-- (NSArray *) mikeys;
-- (void) setMikeys: (NSArray *) theMikeys;
+@property (copy) NSArray *mikeys;
 
-- (NSUInteger) mikeyIndex;
-- (void) setMikeyIndex: (NSUInteger) theMikeyIndex;
+@property NSUInteger mikeyIndex;
 
 - (NSMutableArray *) events;
 - (void) setEvents: (NSMutableArray *) theEvents;

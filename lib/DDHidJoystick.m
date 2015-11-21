@@ -25,7 +25,7 @@
 #import "DDHidLib.h"
 #include <IOKit/hid/IOHIDUsageTables.h>
 
-@interface DDHidJoystick (DDHidJoystickDelegate)
+@interface DDHidJoystick () <DDHidJoystickDelegate>
 
 - (void) ddhidJoystick: (DDHidJoystick *)  joystick
                  stick: (unsigned) stick
@@ -53,7 +53,7 @@
 
 @end
 
-@interface DDHidJoystick (Private)
+@interface DDHidJoystick ()
 
 - (void) initLogicalDeviceElements;
 - (void) initJoystickElements: (NSArray *) elements;
@@ -172,7 +172,7 @@
     return mButtonElements; 
 }
 
-- (unsigned) numberOfButtons;
+- (NSInteger) numberOfButtons;
 {
     return [mButtonElements count];
 }
@@ -180,12 +180,12 @@
 #pragma mark -
 #pragma mark Sticks - indexed accessors
 
-- (unsigned int) countOfSticks 
+- (NSInteger) countOfSticks
 {
     return [mSticks count];
 }
 
-- (DDHidJoystickStick *) objectInSticksAtIndex: (unsigned int)index 
+- (DDHidJoystickStick *) objectInSticksAtIndex: (NSInteger)index
 {
     return [mSticks objectAtIndex: index];
 }
@@ -206,19 +206,12 @@
 #pragma mark -
 #pragma mark Asynchronous Notification
 
-- (void) setDelegate: (id) delegate;
-{
-    mDelegate = delegate;
-}
+@synthesize delegate = mDelegate;
 
 - (void) addElementsToDefaultQueue;
 {
     [self addElementsToQueue: mDefaultQueue];
 }
-
-@end
-
-@implementation DDHidJoystick (Private)
 
 - (void) initLogicalDeviceElements;
 {
@@ -467,10 +460,6 @@
     return NO;
 }
 
-@end
-
-@implementation DDHidJoystick (DDHidJoystickDelegate)
-
 - (void) ddhidJoystick: (DDHidJoystick *)  joystick
                  stick: (unsigned) stick
               xChanged: (int) value;
@@ -524,7 +513,8 @@
 @end
 
 @implementation DDHidJoystickStick
-
+@synthesize xAxisElement = mXAxisElement;
+@synthesize yAxisElement = mYAxisElement;
 - (id) init
 {
     self = [super init];
@@ -612,25 +602,15 @@
     return elements;
 }
 
-- (DDHidElement *) xAxisElement;
-{
-    return mXAxisElement;
-}
-
-- (DDHidElement *) yAxisElement;
-{
-    return mYAxisElement;
-}
-
 #pragma mark -
 #pragma mark mStickElements - indexed accessors
 
-- (unsigned int) countOfStickElements 
+- (NSInteger) countOfStickElements
 {
     return [mStickElements count];
 }
 
-- (DDHidElement *) objectInStickElementsAtIndex: (unsigned int)index 
+- (DDHidElement *) objectInStickElementsAtIndex: (NSInteger)index
 {
     return [mStickElements objectAtIndex: index];
 }
@@ -638,12 +618,12 @@
 #pragma mark -
 #pragma mark PovElements - indexed accessors
 
-- (unsigned int) countOfPovElements;
+- (NSInteger) countOfPovElements;
 {
     return [mPovElements count];
 }
 
-- (DDHidElement *) objectInPovElementsAtIndex: (unsigned int)index;
+- (DDHidElement *) objectInPovElementsAtIndex: (NSInteger)index;
 {
     return [mPovElements objectAtIndex: index];
 }

@@ -28,7 +28,7 @@
 @class DDHidAppleRemote;
 @class RemoteFeedbackView;
 
-@interface AppleRemotePaneController : NSObject
+@interface AppleRemotePaneController : NSObject <DDHidAppleRemoteDelegate>
 {
     IBOutlet NSButton * mStartStopButton;
     IBOutlet RemoteFeedbackView * mFeedbackView;

@@ -30,13 +30,15 @@
 static void queueCallbackFunction(void* target,  IOReturn result, void* refcon,
                                   void* sender);
 
-@interface DDHidQueue (Private)
+@interface DDHidQueue ()
 
 - (void) handleQueueCallback;
 
 @end
 
 @implementation DDHidQueue
+@synthesize delegate = mDelegate;
+@synthesize started = mStarted;
 
 - (id) initWithHIDQueue: (IOHIDQueueInterface **) queue
                    size: (unsigned) size;
@@ -87,11 +89,6 @@ static void queueCallbackFunction(void* target,  IOReturn result, void* refcon,
     }
 }
 
-- (void) setDelegate: (id) delegate;
-{
-    mDelegate = delegate;
-}
-
 - (void) startOnCurrentRunLoop;
 {
     [self startOnRunLoop: [NSRunLoop currentRunLoop]];
@@ -126,11 +123,6 @@ static void queueCallbackFunction(void* target,  IOReturn result, void* refcon,
     mStarted = NO;
 }
 
-- (BOOL) isStarted;
-{
-    return mStarted;
-}
-
 - (BOOL) getNextEvent: (IOHIDEventStruct *) event;
 {
     AbsoluteTime zeroTime = {0, 0};
@@ -148,10 +140,6 @@ static void queueCallbackFunction(void* target,  IOReturn result, void* refcon,
     else
         return [DDHidEvent eventWithIOHIDEvent: &event];
 }
-
-@end
-
-@implementation DDHidQueue (Private)
 
 - (void) handleQueueCallback;
 {

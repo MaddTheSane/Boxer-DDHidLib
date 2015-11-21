@@ -31,7 +31,7 @@
 
 #include <IOKit/hid/IOHIDUsageTables.h>
 
-@interface DDHidDevice (Private)
+@interface DDHidDevice () <DDHidQueueDelegate>
 
 + (void) addDevice: (io_object_t) hidDevice
          withClass: (Class) hidClass
@@ -188,7 +188,7 @@ return retVal;
     return devices;
 }
 
-- (int) logicalDeviceCount;
+- (NSInteger) logicalDeviceCount;
 {
     return 1;
 }
@@ -196,10 +196,7 @@ return retVal;
 #pragma mark -
 #pragma mark I/O Kit Objects
 
-- (io_object_t) ioDevice;
-{
-    return mHidDevice;
-}
+@synthesize ioDevice = mHidDevice;
 
 - (IOHIDDeviceInterface122**) deviceInterface;
 {
@@ -249,15 +246,7 @@ return retVal;
 //=========================================================== 
 //  listenInExclusiveMode 
 //=========================================================== 
-- (BOOL) listenInExclusiveMode
-{
-    return mListenInExclusiveMode;
-}
-
-- (void) setListenInExclusiveMode: (BOOL) flag
-{
-    mListenInExclusiveMode = flag;
-}
+@synthesize listenInExclusiveMode = mListenInExclusiveMode;
 
 - (void) startListening;
 {
@@ -430,24 +419,6 @@ return retVal;
     mTag = theTag;
 }
 
-@end
-
-@implementation DDHidDevice (Protected)
-
-- (unsigned) sizeOfDefaultQueue;
-{
-    return 10;
-}
-
-- (void) addElementsToDefaultQueue;
-{
-    [mDefaultQueue addElements: [self elements] recursively: YES];
-}
-
-@end
-
-@implementation DDHidDevice (Private)
-
 + (void) addDevice: (io_object_t) hidDevice
          withClass: (Class) hidClass
  skipZeroLocations: (BOOL) skipZeroLocations
@@ -593,3 +564,16 @@ done:
 
 @end
 
+@implementation DDHidDevice (Protected)
+
+- (unsigned) sizeOfDefaultQueue;
+{
+    return 10;
+}
+
+- (void) addElementsToDefaultQueue;
+{
+    [mDefaultQueue addElements: [self elements] recursively: YES];
+}
+
+@end

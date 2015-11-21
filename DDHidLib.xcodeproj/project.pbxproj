@@ -350,6 +350,7 @@
 			);
 			name = HIDBrowser;
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
@@ -427,8 +428,8 @@
 				55917E720B541541005308AC /* NSDictionary+DDHidExtras.h */,
 				55917E730B541541005308AC /* NSDictionary+DDHidExtras.m */,
 				559CBC2A0B5B34C300C8FD74 /* DDHidMouse.h */,
-				55FD66D30B5DDC3F00325FEF /* DDHidJoystick.h */,
 				559CBC2B0B5B34C300C8FD74 /* DDHidMouse.m */,
+				55FD66D30B5DDC3F00325FEF /* DDHidJoystick.h */,
 				55FD66D40B5DDC3F00325FEF /* DDHidJoystick.m */,
 				55CA60E30BA0F2530012CF7B /* DDHidKeyboard.h */,
 				55CA60E40BA0F2530012CF7B /* DDHidKeyboard.m */,

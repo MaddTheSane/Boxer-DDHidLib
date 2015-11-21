@@ -31,7 +31,7 @@
 
 #define APPLE_MIC_ONLY 1
 
-@interface DDHidAppleMikey (DDHidAppleMikeyDelegate)
+@interface DDHidAppleMikey ()
 
 - (void) ddhidAppleMikey: (DDHidAppleMikey *) mikey
                press: (unsigned) usageId
@@ -39,7 +39,7 @@
 
 @end
 
-@interface DDHidAppleMikey (Private)
+@interface DDHidAppleMikey () <DDHidAppleMikeyDelegate>
 
 - (void) initPressElements: (NSArray *) elements;
 - (void) ddhidQueueHasEvents: (DDHidQueue *) hidQueue;
@@ -90,7 +90,7 @@
     return mPressElements;
 }
 
-- (unsigned) numberOfKeys;
+- (NSInteger) numberOfKeys;
 {
     return [mPressElements count];
 }
@@ -103,29 +103,18 @@
 #pragma mark -
 #pragma mark Asynchronous Notification
 
-- (void) setDelegate: (id) delegate;
-{
-    mDelegate = delegate;
-}
+@synthesize delegate = mDelegate;
 
 - (void) addElementsToDefaultQueue;
 {
     [self addElementsToQueue: mDefaultQueue];
 }
 
-@end
-
-@implementation DDHidAppleMikey (DDHidAppleMikeyDelegate)
-
 - (void) ddhidAppleMikey:(DDHidAppleMikey *)mikey press:(unsigned int)usageId upOrDown:(BOOL)upOrDown
 {
     if ([mDelegate respondsToSelector: _cmd])
         [mDelegate ddhidAppleMikey: mikey press: usageId upOrDown:(BOOL)upOrDown];
 }
-
-@end
-
-@implementation DDHidAppleMikey (Private)
 
 - (void) initPressElements: (NSArray *) elements;
 {

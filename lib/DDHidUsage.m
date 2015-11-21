@@ -26,6 +26,8 @@
 #import "DDHidUsageTables.h"
 
 @implementation DDHidUsage
+@synthesize usagePage = mUsagePage;
+@synthesize usageId = mUsageId;
 
 + (DDHidUsage *) usageWithUsagePage: (unsigned) usagePage
                             usageId: (unsigned) usageId;
@@ -45,16 +47,6 @@
     mUsageId = usageId;
     
     return self;
-}
-
-- (unsigned) usagePage;
-{
-    return mUsagePage;
-}
-
-- (unsigned) usageId;
-{
-    return mUsageId;
 }
 
 - (NSString *) usageName;
@@ -79,6 +71,23 @@
 - (BOOL) isEqualToUsagePage: (unsigned) usagePage usageId: (unsigned) usageId;
 {
     return ((mUsagePage == usagePage) && (mUsageId == usageId));
+}
+
+- (BOOL)isEqual:(id)other
+{
+    if (other == self) {
+        return YES;
+    } else if (other == nil) {
+        return NO;
+    } else if ([other isKindOfClass:[DDHidUsage class]]) {
+        return mUsagePage == [other usagePage] && mUsageId == [other usageId];
+    }
+    return NO;
+}
+
+- (NSUInteger)hash
+{
+    return 0;
 }
 
 @end
