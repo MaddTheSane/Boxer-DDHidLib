@@ -7,7 +7,9 @@
 //
 
 import Cocoa
-import DDHidLib
+import DDHidLib.DDHidUsageTables
+import DDHidLib.DDHidDevice
+import DDHidLib.DDHidElement
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
