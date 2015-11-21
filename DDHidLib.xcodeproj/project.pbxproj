@@ -95,14 +95,14 @@
 		55DCD9E00B55D503000648E5 /* EventWatcher.nib in Resources */ = {isa = PBXBuildFile; fileRef = 55DCD9DE0B55D503000648E5 /* EventWatcher.nib */; };
 		55E6A1321C00E31500285593 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E6A1311C00E31500285593 /* AppDelegate.swift */; };
 		55E6A1341C00E31500285593 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55E6A1331C00E31500285593 /* Assets.xcassets */; };
-		55E6A13D1C00E35200285593 /* EventWatcher.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E6A13C1C00E35200285593 /* EventWatcher.xib */; };
-		55E6A13F1C00E39D00285593 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E6A13E1C00E39D00285593 /* MainMenu.xib */; };
 		55E6A1401C00E40400285593 /* DDHidLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55193E500B93F2EE004C0C98 /* DDHidLib.framework */; };
 		55E6A1411C00E40400285593 /* DDHidLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 55193E500B93F2EE004C0C98 /* DDHidLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		55E6A1451C00E68700285593 /* HexFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 55917E1B0B53E454005308AC /* HexFormatter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		55E6A14A1C00E75100285593 /* WatcherWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E6A1491C00E75100285593 /* WatcherWindowController.swift */; };
 		55E6A14D1C011AD500285593 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E6A14B1C011AD500285593 /* CoreFoundation.framework */; };
 		55E6A14F1C011AF000285593 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97325FDCFA39411CA2CEA /* Foundation.framework */; };
+		55E6A1501C01216700285593 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E6A1521C01216700285593 /* MainMenu.xib */; };
+		55E6A1531C01216C00285593 /* EventWatcher.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E6A1551C01216C00285593 /* EventWatcher.xib */; };
 		55FC9FDB0BB76D8D0095FC7B /* DDHidKeyboardBarcodeScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 55FC9FD90BB76D8D0095FC7B /* DDHidKeyboardBarcodeScanner.h */; };
 		55FC9FDC0BB76D8D0095FC7B /* DDHidKeyboardBarcodeScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FC9FDA0BB76D8D0095FC7B /* DDHidKeyboardBarcodeScanner.m */; };
 		55FC9FDD0BB76D8D0095FC7B /* DDHidKeyboardBarcodeScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 55FC9FD90BB76D8D0095FC7B /* DDHidKeyboardBarcodeScanner.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -268,11 +268,11 @@
 		55E6A1311C00E31500285593 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		55E6A1331C00E31500285593 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		55E6A1381C00E31600285593 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		55E6A13C1C00E35200285593 /* EventWatcher.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EventWatcher.xib; path = "HIDBrowser-Swift/EventWatcher.xib"; sourceTree = SOURCE_ROOT; };
-		55E6A13E1C00E39D00285593 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = "HIDBrowser-Swift/MainMenu.xib"; sourceTree = SOURCE_ROOT; };
 		55E6A1481C00E6E600285593 /* Bridging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridging.h; sourceTree = "<group>"; };
 		55E6A1491C00E75100285593 /* WatcherWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatcherWindowController.swift; sourceTree = "<group>"; };
 		55E6A14B1C011AD500285593 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		55E6A1511C01216700285593 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		55E6A1541C01216C00285593 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/EventWatcher.xib; sourceTree = "<group>"; };
 		55FC9FD90BB76D8D0095FC7B /* DDHidKeyboardBarcodeScanner.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = DDHidKeyboardBarcodeScanner.h; sourceTree = "<group>"; };
 		55FC9FDA0BB76D8D0095FC7B /* DDHidKeyboardBarcodeScanner.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = DDHidKeyboardBarcodeScanner.m; sourceTree = "<group>"; };
 		55FD65C90B5DD57200325FEF /* DeviceTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceTestController.h; sourceTree = "<group>"; };
@@ -546,8 +546,8 @@
 				55E6A1311C00E31500285593 /* AppDelegate.swift */,
 				55E6A1491C00E75100285593 /* WatcherWindowController.swift */,
 				55E6A1331C00E31500285593 /* Assets.xcassets */,
-				55E6A13E1C00E39D00285593 /* MainMenu.xib */,
-				55E6A13C1C00E35200285593 /* EventWatcher.xib */,
+				55E6A1521C01216700285593 /* MainMenu.xib */,
+				55E6A1551C01216C00285593 /* EventWatcher.xib */,
 				55E6A1381C00E31600285593 /* Info.plist */,
 				55E6A1481C00E6E600285593 /* Bridging.h */,
 			);
@@ -758,8 +758,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				55E6A1341C00E31500285593 /* Assets.xcassets in Resources */,
-				55E6A13D1C00E35200285593 /* EventWatcher.xib in Resources */,
-				55E6A13F1C00E39D00285593 /* MainMenu.xib in Resources */,
+				55E6A1531C01216C00285593 /* EventWatcher.xib in Resources */,
+				55E6A1501C01216700285593 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -931,6 +931,24 @@
 			);
 			name = EventWatcher.nib;
 			sourceTree = "<group>";
+		};
+		55E6A1521C01216700285593 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55E6A1511C01216700285593 /* Base */,
+			);
+			name = MainMenu.xib;
+			path = "HIDBrowser-Swift";
+			sourceTree = SOURCE_ROOT;
+		};
+		55E6A1551C01216C00285593 /* EventWatcher.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55E6A1541C01216C00285593 /* Base */,
+			);
+			name = EventWatcher.xib;
+			path = "HIDBrowser-Swift";
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXVariantGroup section */
 

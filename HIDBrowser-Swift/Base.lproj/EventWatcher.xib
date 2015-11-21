@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="WatcherWindowController">
+        <customObject id="-2" userLabel="File's Owner" customClass="WatcherWindowController" customModule="HIDBrowser_Swift" customModuleProvider="target">
             <connections>
                 <outlet property="mEventHistoryController" destination="13" id="20"/>
                 <outlet property="window" destination="5" id="7"/>
