@@ -25,6 +25,8 @@
 #import <Cocoa/Cocoa.h>
 #include <IOKit/hid/IOHIDLib.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface DDHidEvent : NSObject
 {
     IOHIDEventStruct mEvent;
@@ -43,3 +45,5 @@
 @property (readonly) void *longValue;
 
 @end
+
+NS_ASSUME_NONNULL_END

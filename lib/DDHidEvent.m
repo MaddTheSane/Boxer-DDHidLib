@@ -27,12 +27,12 @@
 
 @implementation DDHidEvent
 
-+ (DDHidEvent *) eventWithIOHIDEvent: (IOHIDEventStruct *) event;
++ (instancetype) eventWithIOHIDEvent: (IOHIDEventStruct *) event;
 {
     return [[[self alloc] initWithIOHIDEvent: event] autorelease];
 }
 
-- (id) initWithIOHIDEvent: (IOHIDEventStruct *) event;
+- (instancetype) initWithIOHIDEvent: (IOHIDEventStruct *) event;
 {
     self = [super init];
     if (self == nil)

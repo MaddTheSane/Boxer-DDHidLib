@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void) addElements: (NSArray<DDHidElement*> *) elements recursively: (BOOL) recursively;
 
-@property (assign) id<DDHidQueueDelegate> delegate;
+@property (assign, nullable) id<DDHidQueueDelegate> delegate;
 
 - (void) startOnCurrentRunLoop;
 

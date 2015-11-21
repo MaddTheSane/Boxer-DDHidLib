@@ -7,7 +7,11 @@
 //
 
 import Cocoa
-import DDHidLib
+import DDHidLib.DDHidDevice
+import DDHidLib.DDHidElement
+import DDHidLib.DDHidQueue
+import DDHidLib.DDHidEvent
+import DDHidLib.DDHidUsage
 
 private final class WatcherEvent {
 	let usageDescription: String
@@ -22,5 +26,12 @@ private final class WatcherEvent {
 }
 
 final class WatcherWindowController : NSWindowController {
-
+	@IBOutlet weak var eventHistoryController: NSArrayController!
+	var device: DDHidDevice!
+	var elements = [DDHidElement]()
+	var queue: DDHidQueue!
+	dynamic var eventHistory = [AnyObject]()
+	private var nextIndex = 0
+	
+	
 }

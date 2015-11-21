@@ -25,6 +25,8 @@
 #import <Cocoa/Cocoa.h>
 #import "DDHidDevice.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class DDHidElement;
 @class DDHidQueue;
 
@@ -39,7 +41,7 @@
 
 + (NSArray<DDHidAppleMikey*> *) allMikeys;
 
-- (instancetype) initWithDevice: (io_object_t) device error: (NSError **) error_;
+- (nullable instancetype) initWithDevice: (io_object_t) device error: (NSError **) error_;
 
 #pragma mark -
 #pragma mark Elements
@@ -53,7 +55,7 @@
 #pragma mark -
 #pragma mark Asynchronous Notification
 
-@property (assign) id<DDHidAppleMikeyDelegate> delegate;
+@property (assign, nullable) id<DDHidAppleMikeyDelegate> delegate;
 
 - (void) addElementsToDefaultQueue;
 
@@ -63,6 +65,8 @@
 
 - (void) ddhidAppleMikey: (DDHidAppleMikey *) mikey
                    press: (unsigned) usageId
-                upOrDown:(BOOL)upOrDown;
+                upOrDown: (BOOL)upOrDown;
 
 @end
+
+NS_ASSUME_NONNULL_END
