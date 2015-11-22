@@ -34,6 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DDHidMouse : DDHidDevice
 {
+    @package
     DDHidElement * mXElement;
     DDHidElement * mYElement;
     DDHidElement * mWheelElement;
@@ -62,7 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark -
 #pragma mark Asynchronous Notification
 
-@property (assign, nonnull) id<DDHidMouseDelegate> delegate;
+@property (assign, nullable) id<DDHidMouseDelegate> delegate;
 
 - (void) addElementsToDefaultQueue;
 

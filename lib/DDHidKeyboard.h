@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DDHidKeyboard : DDHidDevice
 {
+    @package
     NSMutableArray * mKeyElements;
     
     id<DDHidKeyboardDelegate> mDelegate;

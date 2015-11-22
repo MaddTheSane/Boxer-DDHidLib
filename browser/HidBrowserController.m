@@ -23,9 +23,9 @@
  */
 
 #import "HidBrowserController.h"
-#import "DDHidUsageTables.h"
-#import "DDHidDevice.h"
-#import "DDHidElement.h"
+#import <DDHidLib/DDHidUsageTables.h>
+#import <DDHidLib/DDHidDevice.h>
+#import <DDHidLib/DDHidElement.h>
 #import "WatcherWindowController.h"
 
 @implementation HidBrowserController

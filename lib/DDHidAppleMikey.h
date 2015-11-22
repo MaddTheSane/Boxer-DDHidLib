@@ -34,6 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DDHidAppleMikey : DDHidDevice
 {
+    @package
     NSMutableArray * mPressElements;
     
     id<DDHidAppleMikeyDelegate> mDelegate;

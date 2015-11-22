@@ -51,6 +51,7 @@ typedef NS_ENUM(NSInteger, DDHidAppleRemoteEventIdentifier)
 
 @interface DDHidAppleRemote : DDHidDevice
 {
+    @package
     NSMutableDictionary * mCookieToButtonMapping;
     NSArray * mButtonElements;
     DDHidElement * mIdElement;

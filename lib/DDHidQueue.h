@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DDHidQueue : NSObject
 {
+    @package
     IOHIDQueueInterface ** mQueue;
     NSRunLoop * mRunLoop;
     BOOL mStarted;

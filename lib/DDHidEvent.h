@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DDHidEvent : NSObject
 {
+    @package
     IOHIDEventStruct mEvent;
 }
 

@@ -36,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DDHidDevice : NSObject
 {
+    @package
     io_object_t mHidDevice;
 	IOHIDDeviceInterface122** mDeviceInterface;
 
@@ -54,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable instancetype) initLogicalWithDevice: (io_object_t) device
                             logicalDeviceNumber: (int) logicalDeviceNumber
                                           error: (NSError **) error;
-- (NSInteger) logicalDeviceCount;
+@property (readonly) NSInteger logicalDeviceCount;
 
 #pragma mark -
 #pragma mark Finding Devices
@@ -102,7 +103,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly, retain) NSDictionary *properties;
 
 @property (readonly, retain) NSArray<DDHidElement*> *elements;
-- (nonnull DDHidElement *) elementForCookie: (IOHIDElementCookie) cookie;
+- (nullable DDHidElement *) elementForCookie: (IOHIDElementCookie) cookie;
 
 @property (readonly, assign) NSString *productName;
 @property (readonly, assign) NSString *manufacturer;

@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DDHidKeyboardBarcodeScanner : DDHidDevice
 {
+    @package
     NSMutableArray * mKeyElements;
     
     NSMutableString * mAccumulatedDigits;

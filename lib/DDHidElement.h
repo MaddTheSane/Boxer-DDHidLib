@@ -31,6 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DDHidElement : NSObject
 {
+    @package
     NSDictionary * mProperties;
     DDHidUsage * mUsage;
     NSArray * mElements;
