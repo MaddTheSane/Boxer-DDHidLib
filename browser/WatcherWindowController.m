@@ -23,9 +23,9 @@
  */
 
 #import "WatcherWindowController.h"
-#import "DDHidQueue.h"
-#import "DDHidEvent.h"
-#import "DDHidUsage.h"
+#import <DDHidLib/DDHidQueue.h>
+#import <DDHidLib/DDHidEvent.h>
+#import <DDHidLib/DDHidUsage.h>
 
 @interface WatcherEvent : NSObject
 {

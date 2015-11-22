@@ -23,8 +23,8 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "DDHidDevice.h"
-#import "DDHidElement.h"
+#import <DDHidLib/DDHidDevice.h>
+#import <DDHidLib/DDHidElement.h>
 
 @class DDHidQueue;
 

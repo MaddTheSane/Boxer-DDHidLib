@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DDHidJoystickStick : NSObject
 {
+    @package
     DDHidElement * mXAxisElement;
     DDHidElement * mYAxisElement;
     NSMutableArray<DDHidElement*> * mStickElements;
@@ -63,6 +64,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DDHidJoystick : DDHidDevice
 {
+    @package
     NSMutableArray<DDHidJoystickStick*> * mSticks;
     NSMutableArray * mButtonElements;
     NSMutableArray * mLogicalDeviceElements;
