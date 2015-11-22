@@ -47,7 +47,7 @@
 #pragma mark -
 #pragma mark Keyboard Elements
 
-- (NSArray *) keyElements;
+@property (readonly, retain) NSArray *keyElements;
 
 @property (readonly) NSInteger numberOfKeys;
 

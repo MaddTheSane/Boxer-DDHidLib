@@ -98,6 +98,10 @@
 
 @end
 
+@interface WatcherWindowController () <DDHidQueueDelegate>
+
+@end
+
 @implementation WatcherWindowController
 
 - (id) init
@@ -155,7 +159,7 @@
 
     NSMutableArray * newEvents = [NSMutableArray array];
     DDHidEvent * event;
-    while (event = [hidQueue nextEvent])
+    while ((event = [hidQueue nextEvent]))
     {
         DDHidElement * element = [mDevice elementForCookie: [event elementCookie]];
         watcherEvent =

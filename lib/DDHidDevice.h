@@ -28,6 +28,8 @@
 #include <IOKit/hid/IOHIDLib.h>
 #include <IOKit/hid/IOHIDKeys.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class DDHidUsage;
 @class DDHidElement;
 @class DDHidQueue;
@@ -40,7 +42,7 @@
     NSMutableDictionary * mProperties;
     DDHidUsage * mPrimaryUsage;
     NSMutableArray * mUsages;
-    NSArray * mElements;
+    NSArray<DDHidElement*> * mElements;
     NSMutableDictionary * mElementsByCookie;
     BOOL mListenInExclusiveMode;
     DDHidQueue * mDefaultQueue;
@@ -48,31 +50,31 @@
     int mLogicalDeviceNumber;
 }
 
-- (instancetype) initWithDevice: (io_object_t) device error: (NSError **) error;
-- (instancetype) initLogicalWithDevice: (io_object_t) device
-                   logicalDeviceNumber: (int) logicalDeviceNumber
-                                 error: (NSError **) error;
+- (nullable instancetype) initWithDevice: (io_object_t) device error: (NSError **) error;
+- (nullable instancetype) initLogicalWithDevice: (io_object_t) device
+                            logicalDeviceNumber: (int) logicalDeviceNumber
+                                          error: (NSError **) error;
 - (NSInteger) logicalDeviceCount;
 
 #pragma mark -
 #pragma mark Finding Devices
 
-+ (NSArray<DDHidDevice*> *) allDevices;
++ (nullable NSArray<DDHidDevice*> *) allDevices;
 
-+ (NSArray<DDHidDevice*> *) allDevicesMatchingUsagePage: (unsigned) usagePage
-                                                usageId: (unsigned) usageId
-                                              withClass: (Class) hidClass
-                                      skipZeroLocations: (BOOL) emptyLocation;
++ (nullable NSArray<DDHidDevice*> *) allDevicesMatchingUsagePage: (unsigned) usagePage
+                                                         usageId: (unsigned) usageId
+                                                       withClass: (Class) hidClass
+                                               skipZeroLocations: (BOOL) emptyLocation;
 
-+ (NSArray<DDHidDevice*> *) allDevicesMatchingCFDictionary: (CFDictionaryRef) matchDictionary
-                                                 withClass: (Class) hidClass
-                                         skipZeroLocations: (BOOL) emptyLocation;
++ (nullable NSArray<DDHidDevice*> *) allDevicesMatchingCFDictionary: (CF_RELEASES_ARGUMENT CFDictionaryRef) matchDictionary
+                                                          withClass: (Class) hidClass
+                                                  skipZeroLocations: (BOOL) emptyLocation;
 
 #pragma mark -
 #pragma mark I/O Kit Objects
 
 @property (readonly) io_object_t ioDevice;
-- (IOHIDDeviceInterface122**) deviceInterface;
+- (IOHIDDeviceInterface122*__nonnull*__nonnull) deviceInterface;
 
 #pragma mark -
 #pragma mark Operations
@@ -80,7 +82,7 @@
 - (void) open;
 - (void) openWithOptions: (UInt32) options;
 - (void) close;
-- (DDHidQueue *) createQueueWithSize: (unsigned) size;
+- (nullable DDHidQueue *) createQueueWithSize: (unsigned) size;
 - (long) getElementValue: (DDHidElement *) element;
 
 #pragma mark -
@@ -99,7 +101,7 @@
 
 - (NSDictionary *) properties;
 
-- (NSArray *) elements;
+@property (readonly, retain) NSArray<DDHidElement*> *elements;
 - (DDHidElement *) elementForCookie: (IOHIDElementCookie) cookie;
 
 @property (readonly, assign) NSString *productName;
@@ -113,7 +115,7 @@
 @property (readonly) long usagePage;
 @property (readonly) long usage;
 @property (readonly, retain) DDHidUsage *primaryUsage;
-- (NSArray<DDHidUsage*> *) usages;
+@property (readonly, assign) NSArray<DDHidUsage*> *usages;
 
 - (NSComparisonResult) compareByLocationId: (DDHidDevice *) device;
 
@@ -123,7 +125,9 @@
 
 @interface DDHidDevice (Protected)
 
-- (unsigned) sizeOfDefaultQueue;
+- (NSInteger) sizeOfDefaultQueue;
 - (void) addElementsToDefaultQueue;
 
 @end
+
+NS_ASSUME_NONNULL_END

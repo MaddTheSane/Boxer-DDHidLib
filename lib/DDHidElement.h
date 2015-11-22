@@ -25,6 +25,8 @@
 #import <Cocoa/Cocoa.h>
 #include <IOKit/hid/IOHIDKeys.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class DDHidUsage;
 
 @interface DDHidElement : NSObject
@@ -34,20 +36,20 @@
     NSArray * mElements;
 }
 
-+ (NSArray<DDHidElement*> *) elementsWithPropertiesArray: (NSArray *) propertiesArray;
++ (NSArray<DDHidElement*> *) elementsWithPropertiesArray: (NSArray<NSDictionary*> *) propertiesArray;
 
 + (instancetype) elementWithProperties: (NSDictionary *) properties;
 
 - (instancetype) initWithProperties: (NSDictionary *) properties;
 
-- (NSDictionary *) properties;
+@property (readonly, retain) NSDictionary *properties;
 
-- (NSString *) stringForKey: (NSString *) key;
+- (nullable NSString *) stringForKey: (NSString *) key;
 
 @property (readonly) IOHIDElementCookie cookie;
 @property (readonly) unsigned cookieAsUnsigned;
 
-- (NSArray *) elements;
+@property (readonly, retain) NSArray<DDHidElement*> *elements;
 @property (readonly, retain) DDHidUsage *usage;
 @property (readonly, assign) NSString *name;
 @property (readonly) BOOL hasNullState;
@@ -55,9 +57,11 @@
 @property (readonly, getter=isArray) BOOL array;
 @property (readonly, getter=isRelative) BOOL relative;
 @property (readonly, getter=isWrapping) BOOL wrapping;
-- (long) maxValue;
-- (long) minValue;
+@property (readonly) long maxValue;
+@property (readonly) long minValue;
 
 - (NSComparisonResult) compareByUsage: (DDHidElement *) device;
 
 @end
+
+NS_ASSUME_NONNULL_END

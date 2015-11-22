@@ -61,7 +61,7 @@
 
 @interface DDHidJoystick : DDHidDevice
 {
-    NSMutableArray * mSticks;
+    NSMutableArray<DDHidJoystickStick*> * mSticks;
     NSMutableArray * mButtonElements;
     NSMutableArray * mLogicalDeviceElements;
 
@@ -74,7 +74,7 @@
                    logicalDeviceNumber: (int) logicalDeviceNumber
                                  error: (NSError **) error;
 
-- (int) logicalDeviceCount;
+@property (readonly) NSInteger logicalDeviceCount;
 
 #pragma mark -
 #pragma mark Joystick Elements

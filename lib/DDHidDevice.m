@@ -115,14 +115,14 @@
 	// name for all HID class devices
 	CFMutableDictionaryRef hidMatchDictionary =
         IOServiceMatching(kIOHIDDeviceKey);
-    id retVal = nil;
+    NSArray *retVal = nil;
     if(hidMatchDictionary) {
         retVal = [self allDevicesMatchingCFDictionary: hidMatchDictionary
                                       withClass: [DDHidDevice class]
                               skipZeroLocations: NO];
         //CFRelease(hidMatchDictionary);//dont free, it is freed by IOServiceGetMatchingServices
     }
-    return retVal;
+    return retVal ? [NSArray arrayWithArray:retVal] : nil;
 }
 
 + (NSArray *) allDevicesMatchingUsagePage: (unsigned) usagePage
@@ -134,20 +134,20 @@
 	// name for all HID class devices
 	CFMutableDictionaryRef hidMatchDictionary =
         IOServiceMatching(kIOHIDDeviceKey);
-    id retVal = nil;
+    NSArray *retVal = nil;
     if(hidMatchDictionary) {
         NSMutableDictionary * objcMatchDictionary =
             (NSMutableDictionary *) hidMatchDictionary;
-        [objcMatchDictionary ddhid_setObject: [NSNumber numberWithUnsignedInt: usagePage]
+        [objcMatchDictionary ddhid_setObject: @(usagePage)
                                    forString: kIOHIDDeviceUsagePageKey];
-        [objcMatchDictionary ddhid_setObject: [NSNumber numberWithUnsignedInt: usageId]
+        [objcMatchDictionary ddhid_setObject: @(usageId)
                                    forString: kIOHIDDeviceUsageKey];
         retVal = [self allDevicesMatchingCFDictionary: hidMatchDictionary
                                           withClass: hidClass
                                   skipZeroLocations: skipZeroLocations];
         //CFRelease(hidMatchDictionary);//dont free, it is freed by IOServiceGetMatchingServices
     }
-return retVal;
+    return retVal ? [NSArray arrayWithArray:retVal] : nil;
 }
 
 + (NSArray *) allDevicesMatchingCFDictionary: (CFDictionaryRef) matchDictionary
@@ -185,7 +185,7 @@ return retVal;
             IOObjectRelease(hidObjectIterator);
     }
     
-    return devices;
+    return [NSArray arrayWithArray:devices];
 }
 
 - (NSInteger) logicalDeviceCount;
@@ -408,16 +408,8 @@ return retVal;
 
 //=========================================================== 
 //  tag 
-//=========================================================== 
-- (int) tag
-{
-    return mTag;
-}
-
-- (void) setTag: (int) theTag
-{
-    mTag = theTag;
-}
+//===========================================================
+@synthesize tag = mTag;
 
 + (void) addDevice: (io_object_t) hidDevice
          withClass: (Class) hidClass
@@ -566,7 +558,7 @@ done:
 
 @implementation DDHidDevice (Protected)
 
-- (unsigned) sizeOfDefaultQueue;
+- (NSInteger) sizeOfDefaultQueue;
 {
     return 10;
 }

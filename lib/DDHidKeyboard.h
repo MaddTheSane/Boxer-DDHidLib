@@ -59,6 +59,7 @@
 @end
 
 @protocol DDHidKeyboardDelegate <NSObject>
+@optional
 
 - (void) ddhidKeyboard: (DDHidKeyboard *) keyboard
                keyDown: (unsigned) usageId;

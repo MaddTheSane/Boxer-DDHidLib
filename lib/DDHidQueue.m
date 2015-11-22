@@ -79,9 +79,7 @@ static void queueCallbackFunction(void* target,  IOReturn result, void* refcon,
 
 - (void) addElements: (NSArray *) elements recursively: (BOOL) recursively;
 {
-    NSEnumerator * e = [elements objectEnumerator];
-    DDHidElement * element;
-    while (element = [e nextObject])
+    for (DDHidElement *element in elements)
     {
         [self addElement: element];
         if (recursively)
@@ -154,9 +152,9 @@ static void queueCallbackFunction(void* target,  IOReturn result, void* refcon,
 static void queueCallbackFunction(void* target,  IOReturn result, void* refcon,
                                   void* sender)
 {
-    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+    @autoreleasepool {
     DDHidQueue * queue = (DDHidQueue *) target;
     [queue handleQueueCallback];
-    [pool release];
+    }
     
 }
