@@ -74,7 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark I/O Kit Objects
 
 @property (readonly) io_object_t ioDevice;
-- (IOHIDDeviceInterface122*__nonnull*__nonnull) deviceInterface;
+@property (readonly) IOHIDDeviceInterface122*__nonnull*__nonnull deviceInterface;
 
 #pragma mark -
 #pragma mark Operations
@@ -99,10 +99,10 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark -
 #pragma mark Properties
 
-- (NSDictionary *) properties;
+@property (readonly, retain) NSDictionary *properties;
 
 @property (readonly, retain) NSArray<DDHidElement*> *elements;
-- (DDHidElement *) elementForCookie: (IOHIDElementCookie) cookie;
+- (nullable DDHidElement *) elementForCookie: (IOHIDElementCookie) cookie;
 
 @property (readonly, assign) NSString *productName;
 @property (readonly, assign) NSString *manufacturer;

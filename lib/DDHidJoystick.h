@@ -25,6 +25,8 @@
 #import <Cocoa/Cocoa.h>
 #import "DDHidDevice.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class DDHidElement;
 @class DDHidQueue;
 @protocol DDHidJoystickDelegate;
@@ -68,11 +70,11 @@
     id<DDHidJoystickDelegate> mDelegate;
 }
 
-+ (NSArray<DDHidJoystick*> *) allJoysticks;
++ (nullable NSArray<DDHidJoystick*> *) allJoysticks;
 
-- (instancetype) initLogicalWithDevice: (io_object_t) device
-                   logicalDeviceNumber: (int) logicalDeviceNumber
-                                 error: (NSError **) error;
+- (nullable instancetype) initLogicalWithDevice: (io_object_t) device
+                            logicalDeviceNumber: (int) logicalDeviceNumber
+                                          error: (NSError **) error;
 
 @property (readonly) NSInteger logicalDeviceCount;
 
@@ -81,7 +83,7 @@
 
 @property (readonly) NSInteger numberOfButtons;
 
-- (NSArray *) buttonElements;
+@property(readonly, retain) NSArray *buttonElements;
 
 #pragma mark -
 #pragma mark Sticks - indexed accessors
@@ -94,7 +96,7 @@
 #pragma mark -
 #pragma mark Asynchronous Notification
 
-@property (assign) id<DDHidJoystickDelegate> delegate;
+@property (assign, nullable) id<DDHidJoystickDelegate> delegate;
 
 - (void) addElementsToDefaultQueue;
 
@@ -132,3 +134,5 @@
               buttonUp: (unsigned) buttonNumber;
 
 @end
+
+NS_ASSUME_NONNULL_END

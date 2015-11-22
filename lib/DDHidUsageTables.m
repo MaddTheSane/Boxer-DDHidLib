@@ -36,10 +36,11 @@ static DDHidUsageTables * sStandardUsageTables = nil;
         NSString * usageTablesPath =
             [myBundle pathForResource: @"DDHidStandardUsages" ofType: @"plist"];
         NSDictionary * lookupTables =
-            [NSDictionary dictionaryWithContentsOfFile: usageTablesPath];
+            [[NSDictionary alloc] initWithContentsOfFile: usageTablesPath];
         sStandardUsageTables =
             [[DDHidUsageTables alloc] initWithLookupTables: lookupTables];
         [sStandardUsageTables retain];
+        [lookupTables release];
     }
     
     return sStandardUsageTables;

@@ -29,15 +29,15 @@
 @synthesize usagePage = mUsagePage;
 @synthesize usageId = mUsageId;
 
-+ (DDHidUsage *) usageWithUsagePage: (unsigned) usagePage
++ (instancetype) usageWithUsagePage: (unsigned) usagePage
                             usageId: (unsigned) usageId;
 {
     return [[[self alloc] initWithUsagePage: usagePage usageId: usageId]
         autorelease];
 }
 
-- (id) initWithUsagePage: (unsigned) usagePage
-                 usageId: (unsigned) usageId;
+- (instancetype) initWithUsagePage: (unsigned) usagePage
+                           usageId: (unsigned) usageId;
 {
     self = [super init];
     if (self == nil)

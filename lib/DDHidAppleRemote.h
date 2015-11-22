@@ -26,6 +26,8 @@
 
 #import "DDHidDevice.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class DDHidElement;
 @protocol DDHidAppleRemoteDelegate;
 
@@ -57,16 +59,16 @@ typedef NS_ENUM(NSInteger, DDHidAppleRemoteEventIdentifier)
     id<DDHidAppleRemoteDelegate> mDelegate;
 }
 
-+ (NSArray<DDHidAppleRemote*> *) allRemotes;
++ (nullable NSArray<DDHidAppleRemote*> *) allRemotes;
 
 + (DDHidAppleRemote *) firstRemote;
 
-- (instancetype) initWithDevice: (io_object_t) device error: (NSError **) error_;
+- (nullable instancetype) initWithDevice: (io_object_t) device error: (NSError **) error_;
 
 #pragma mark -
 #pragma mark Asynchronous Notification
 
-@property (assign) id<DDHidAppleRemoteDelegate> delegate;
+@property (assign, nullable) id<DDHidAppleRemoteDelegate> delegate;
 
 - (void) addElementsToDefaultQueue;
 
@@ -83,3 +85,5 @@ typedef NS_ENUM(NSInteger, DDHidAppleRemoteEventIdentifier)
                     pressedDown: (BOOL) pressedDown;
 
 @end
+
+NS_ASSUME_NONNULL_END

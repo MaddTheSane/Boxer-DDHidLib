@@ -25,6 +25,8 @@
 #import <Cocoa/Cocoa.h>
 #import "DDHidDevice.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class DDHidElement;
 @class DDHidQueue;
 
@@ -40,9 +42,9 @@
     id<DDHidMouseDelegate> mDelegate;
 }
 
-+ (NSArray<DDHidMouse*> *) allMice;
++ (nullable NSArray<DDHidMouse*> *) allMice;
 
-- (instancetype) initWithDevice: (io_object_t) device error: (NSError **) error_;
+- (nullable instancetype) initWithDevice: (io_object_t) device error: (NSError **) error_;
 
 #pragma mark -
 #pragma mark Mouse Elements
@@ -51,7 +53,7 @@
 @property (readonly, retain) DDHidElement *yElement;
 @property (readonly, retain) DDHidElement *wheelElement;
 
-- (NSArray<DDHidElement*> *) buttonElements;
+@property (readonly, retain) NSArray<DDHidElement*> *buttonElements;
 
 @property (readonly) NSInteger numberOfButtons;
 
@@ -60,7 +62,7 @@
 #pragma mark -
 #pragma mark Asynchronous Notification
 
-@property (assign) id<DDHidMouseDelegate> delegate;
+@property (assign, nonnull) id<DDHidMouseDelegate> delegate;
 
 - (void) addElementsToDefaultQueue;
 
@@ -77,3 +79,4 @@
 
 @end
 
+NS_ASSUME_NONNULL_END
