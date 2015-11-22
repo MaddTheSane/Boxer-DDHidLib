@@ -39,14 +39,14 @@ NS_ASSUME_NONNULL_BEGIN
     id<DDHidAppleMikeyDelegate> mDelegate;
 }
 
-+ (NSArray<DDHidAppleMikey*> *) allMikeys;
++ (nullable NSArray<DDHidAppleMikey*> *) allMikeys;
 
 - (nullable instancetype) initWithDevice: (io_object_t) device error: (NSError **) error_;
 
 #pragma mark -
 #pragma mark Elements
 
-@property (readonly, assign) NSArray<DDHidElement*> *pressElements;
+@property (readonly, retain) NSArray<DDHidElement*> *pressElements;
 
 @property (readonly) NSInteger numberOfKeys;
 

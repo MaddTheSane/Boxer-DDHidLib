@@ -25,6 +25,8 @@
 #import <Cocoa/Cocoa.h>
 #import "DDHidDevice.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class DDHidElement;
 @class DDHidQueue;
 @protocol DDHidKeyboardDelegate;
@@ -36,14 +38,14 @@
     id<DDHidKeyboardDelegate> mDelegate;
 }
 
-+ (NSArray<DDHidKeyboard*> *) allKeyboards;
++ (nullable NSArray<DDHidKeyboard*> *) allKeyboards;
 
-- (instancetype) initWithDevice: (io_object_t) device error: (NSError **) error_;
+- (nullable instancetype) initWithDevice: (io_object_t) device error: (NSError **) error_;
 
 #pragma mark -
 #pragma mark Keyboards Elements
 
-@property (readonly, assign) NSArray *keyElements;
+@property (readonly, retain) NSArray<DDHidElement*> *keyElements;
 
 @property (readonly) NSInteger numberOfKeys;
 
@@ -52,7 +54,7 @@
 #pragma mark -
 #pragma mark Asynchronous Notification
 
-@property (assign) id<DDHidKeyboardDelegate> delegate;
+@property (assign, nullable) id<DDHidKeyboardDelegate> delegate;
 
 - (void) addElementsToDefaultQueue;
 
@@ -68,3 +70,5 @@
                  keyUp: (unsigned) usageId;
 
 @end
+
+NS_ASSUME_NONNULL_END

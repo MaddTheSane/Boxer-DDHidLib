@@ -25,6 +25,8 @@
 #import <Cocoa/Cocoa.h>
 #import "DDHidDevice.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class DDHidElement;
 @class DDHidQueue;
 @protocol DDHidKeyboardBarcodeScannerDelegate;
@@ -40,14 +42,14 @@
     id<DDHidKeyboardBarcodeScannerDelegate> mDelegate;
 }
 
-+ (NSArray<DDHidKeyboardBarcodeScanner*> *) allPossibleKeyboardBarcodeScanners;
++ (nullable NSArray<DDHidKeyboardBarcodeScanner*> *) allPossibleKeyboardBarcodeScanners;
 
-- (instancetype) initWithDevice: (io_object_t) device error: (NSError **) error_;
+- (nullable instancetype) initWithDevice: (io_object_t) device error: (NSError **) error_;
 
 #pragma mark -
 #pragma mark Keyboard Elements
 
-@property (readonly, retain) NSArray *keyElements;
+@property (readonly, retain) NSArray<DDHidElement*> *keyElements;
 
 @property (readonly) NSInteger numberOfKeys;
 
@@ -73,3 +75,5 @@
                           gotBarcode: (NSString *) barcode;
 
 @end
+
+NS_ASSUME_NONNULL_END
