@@ -36,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
     @package
     DDHidElement * mXAxisElement;
     DDHidElement * mYAxisElement;
+    @public
     NSMutableArray<DDHidElement*> * mStickElements;
     // Point of view elements (i.e. hat switches)
     NSMutableArray<DDHidElement*> * mPovElements;
@@ -64,15 +65,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DDHidJoystick : DDHidDevice
 {
-    @package
     NSMutableArray<DDHidJoystickStick*> * mSticks;
+    @package
     NSMutableArray * mButtonElements;
     NSMutableArray * mLogicalDeviceElements;
 
     id<DDHidJoystickDelegate> mDelegate;
 }
 
-+ (nullable NSArray<DDHidJoystick*> *) allJoysticks;
+@property (class, readonly, copy, nullable) NSArray<DDHidJoystick*> *allJoysticks;
 
 - (nullable instancetype) initLogicalWithDevice: (io_object_t) device
                             logicalDeviceNumber: (int) logicalDeviceNumber
