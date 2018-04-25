@@ -232,11 +232,11 @@
             
             if (value == 1)
             {
-                [self ddhidMouse: self buttonDown: i];
+                [self ddhidMouse: self buttonDown: (unsigned int)i];
             }
             else if (value == 0)
             {
-                [self ddhidMouse: self buttonUp: i];
+                [self ddhidMouse: self buttonUp: (unsigned int)i];
             }
             else
             {

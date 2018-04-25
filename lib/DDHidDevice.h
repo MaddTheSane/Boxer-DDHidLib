@@ -126,7 +126,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DDHidDevice (Protected)
 
-- (NSInteger) sizeOfDefaultQueue;
+- (unsigned) sizeOfDefaultQueue;
 - (void) addElementsToDefaultQueue;
 
 @end

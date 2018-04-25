@@ -558,7 +558,7 @@ done:
 
 @implementation DDHidDevice (Protected)
 
-- (NSInteger) sizeOfDefaultQueue;
+- (unsigned) sizeOfDefaultQueue;
 {
     return 10;
 }

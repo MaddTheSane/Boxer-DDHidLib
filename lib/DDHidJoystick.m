@@ -122,7 +122,7 @@
     mLogicalDeviceElements = [[NSMutableArray alloc] init];
 
     [self initLogicalDeviceElements];
-    int logicalDeviceCount = [mLogicalDeviceElements count];
+    NSInteger logicalDeviceCount = [mLogicalDeviceElements count];
     if (logicalDeviceCount ==  0)
     {
         [self release];
@@ -131,7 +131,7 @@
 
     mLogicalDeviceNumber = logicalDeviceNumber;
     if (mLogicalDeviceNumber >= logicalDeviceCount)
-        mLogicalDeviceNumber = logicalDeviceCount - 1;
+        mLogicalDeviceNumber = (int)(logicalDeviceCount - 1);
     
     [self initJoystickElements:
         [mLogicalDeviceElements objectAtIndex: mLogicalDeviceNumber]];
@@ -348,12 +348,12 @@
 - (int) normalizeValue: (int) value
             forElement: (DDHidElement *) element;
 {
-    int normalizedUnits = DDHID_JOYSTICK_VALUE_MAX - DDHID_JOYSTICK_VALUE_MIN;
-    int elementUnits = [element maxValue] - [element minValue];
+    NSInteger normalizedUnits = DDHID_JOYSTICK_VALUE_MAX - DDHID_JOYSTICK_VALUE_MIN;
+    NSInteger elementUnits = [element maxValue] - [element minValue];
     
-    int normalizedValue = (((int64_t)(value - [element minValue]) * normalizedUnits) /
+    NSInteger normalizedValue = (((int64_t)(value - [element minValue]) * normalizedUnits) /
                            elementUnits) + DDHID_JOYSTICK_VALUE_MIN;
-    return normalizedValue;
+    return (int)normalizedValue;
 }
 
 - (int) povValue: (int) value
@@ -371,7 +371,7 @@
     
     // Do like DirectInput and express the hatswitch value in hundredths of a
 	// degree, clockwise from north.
-	return 36000 / (max - min + 1) * (value - min);
+	return (int)(36000 / (max - min + 1) * (value - min));
 }
 
 - (BOOL) findStick: (unsigned *) stick
