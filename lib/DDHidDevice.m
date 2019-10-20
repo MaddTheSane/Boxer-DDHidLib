@@ -211,7 +211,7 @@
     [self openWithOptions: kIOHIDOptionsTypeNone];
 }
 
-- (void) openWithOptions: (UInt32) options;
+- (void) openWithOptions: (IOOptionBits) options;
 {
     NSXThrowError((*mDeviceInterface)->open(mDeviceInterface, options));
 }

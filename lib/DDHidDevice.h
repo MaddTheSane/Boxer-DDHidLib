@@ -81,7 +81,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark Operations
 
 - (void) open;
-- (void) openWithOptions: (UInt32) options;
+- (void) openWithOptions: (IOOptionBits) options;
 - (void) close;
 - (nullable DDHidQueue *) createQueueWithSize: (unsigned) size;
 - (long) getElementValue: (DDHidElement *) element;
