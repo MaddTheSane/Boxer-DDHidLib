@@ -25,6 +25,8 @@
 #import <Cocoa/Cocoa.h>
 
 
+@class DDHidDevice;
+
 @interface HidBrowserController : NSObject
 {
     IBOutlet NSWindow * mWindow;
@@ -33,7 +35,7 @@
     NSArray * mDevices;
 }
 
-- (NSArray *) devices;
+- (NSArray<DDHidDevice*> *) devices;
 
 - (IBAction) watchSelected: (id) sender;
 

@@ -38,19 +38,16 @@
     int mNextIndex;
 }
 
-- (DDHidDevice *) device;
-- (void) setDevice: (DDHidDevice *) newDevice;
+@property (retain) DDHidDevice *device;
 
-- (NSArray *) elements;
+@property (copy) NSArray *elements;
 - (void) setElements: (NSArray *) newElements;
 
-- (NSMutableArray *) eventHistory;
-- (void) setEventHistory: (NSMutableArray *) anEventHistory;
+@property (retain) NSMutableArray *eventHistory;
 - (void) addToEventHistory: (id)mEventHistoryObject;
 - (void) removeFromEventHistory: (id)mEventHistoryObject;
 
-- (BOOL) isWatching;
-- (void) setWatching: (BOOL) watching;
+@property (getter=isWatching) BOOL watching;
 
 - (IBAction) clearHistory: (id) sender;
 

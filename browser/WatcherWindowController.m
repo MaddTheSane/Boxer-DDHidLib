@@ -38,9 +38,9 @@
                           event: (DDHidEvent *) anEvent
                           index: (int) index;
 
-- (NSString *) usageDescription;
-- (DDHidEvent *) event;
-- (int) index;
+@property (readonly, copy) NSString *usageDescription;
+@property (readonly, retain) DDHidEvent *event;
+@property (readonly) int index;
 
 @end
 
@@ -52,7 +52,7 @@
 {
     if (self = [super init])
     {
-        mUsageDescription = [anUsageDescription retain];
+        mUsageDescription = [anUsageDescription copy];
         mEvent = [anEvent retain];
         mIndex = index;
     }
@@ -75,26 +75,17 @@
 //=========================================================== 
 // - usageDescription
 //=========================================================== 
-- (NSString *) usageDescription
-{
-    return mUsageDescription; 
-}
+@synthesize usageDescription=mUsageDescription;
 
 //=========================================================== 
 // - event
 //=========================================================== 
-- (DDHidEvent *) event
-{
-    return mEvent; 
-}
+@synthesize event=mEvent;
 
 //=========================================================== 
 // - index
 //=========================================================== 
-- (int) index
-{
-    return mIndex;
-}
+@synthesize index=mIndex;
 
 @end
 
@@ -187,53 +178,17 @@
 //=========================================================== 
 //  device 
 //=========================================================== 
-- (DDHidDevice *) device
-{
-    return [[mDevice retain] autorelease]; 
-}
-
-- (void) setDevice: (DDHidDevice *) newDevice
-{
-    if (mDevice != newDevice)
-    {
-        [mDevice release];
-        mDevice = [newDevice retain];
-    }
-}
+@synthesize device=mDevice;
 
 //=========================================================== 
 //  elements 
 //=========================================================== 
-- (NSArray *) elements
-{
-    return [[mElements retain] autorelease]; 
-}
-
-- (void) setElements: (NSArray *) newElements
-{
-    if (mElements != newElements)
-    {
-        [mElements release];
-        mElements = [newElements retain];
-    }
-}
+@synthesize elements=mElements;
 
 //=========================================================== 
 //  eventHistory 
 //=========================================================== 
-- (NSMutableArray *) eventHistory
-{
-    return mEventHistory; 
-}
-
-- (void) setEventHistory: (NSMutableArray *) anEventHistory
-{
-    if (mEventHistory != anEventHistory)
-    {
-        [mEventHistory release];
-        mEventHistory = [anEventHistory retain];
-    }
-}
+@synthesize eventHistory=mEventHistory;
 - (void) addToEventHistory: (id)mEventHistoryObject
 {
     [[self eventHistory] addObject: mEventHistoryObject];
