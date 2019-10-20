@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (readonly, retain) NSArray<DDHidElement*> *elements;
 @property (readonly, retain) DDHidUsage *usage;
-@property (readonly, assign) NSString *name;
+@property (readonly, copy) NSString *name;
 @property (readonly) BOOL hasNullState;
 @property (readonly) BOOL hasPreferredState;
 @property (readonly, getter=isArray) BOOL array;
