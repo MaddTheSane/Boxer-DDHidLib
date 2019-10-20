@@ -40,8 +40,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (readonly) unsigned usagePage;
 @property (readonly) unsigned usageId;
-@property (readonly, assign) NSString *usageName;
-@property (readonly, assign) NSString *usageNameWithIds;
+@property (readonly, copy) NSString *usageName;
+@property (readonly, copy) NSString *usageNameWithIds;
 
 - (NSString *) description;
 

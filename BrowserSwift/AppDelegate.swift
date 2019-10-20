@@ -10,8 +10,7 @@ import DDHidLib.DDHidDevice
 
 private var sSleepAtExit = false
 
-private func exit_sleeper()
-{
+private func exit_sleeper() {
     while sSleepAtExit {
         sleep(60)
     }
@@ -29,9 +28,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         sSleepAtExit = UserDefaults.standard.bool(forKey: "SleepAtExit")
         atexit(exit_sleeper)
         
-        willChangeValue(forKey: "devices")
+        willChangeValue(for: \AppDelegate.devices)
         devices = DDHidDevice.allDevices() ?? []
-        didChangeValue(forKey: "devices")
+        didChangeValue(for: \AppDelegate.devices)
         
         window.center()
         window.makeKeyAndOrderFront(self)
@@ -55,7 +54,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         let controller = WatchWindowController()
         controller.device = selectedDevice()
-        controller.elements = selectedElements
+        controller.elements = selectedElements as! [DDHidElement]
         controller.showWindow(self)
     }
 
