@@ -26,9 +26,9 @@
 #import "DDHidJoystick.h"
 #import "ButtonState.h"
 
-@interface JoystickPaneController (Private)
+@interface JoystickPaneController ()
 
-- (void) setJoysticks: (NSArray *) theJoysticks;
+@property (readwrite, copy) NSArray *joysticks;
 
 @end
 
@@ -51,10 +51,7 @@
 //=========================================================== 
 //  joysticks 
 //=========================================================== 
-- (NSArray *) joysticks
-{
-    return mJoysticks; 
-}
+@synthesize joysticks=mJoysticks;
 
 - (NSArray *) joystickButtons;
 {
@@ -64,10 +61,7 @@
 //=========================================================== 
 //  joystickIndex 
 //=========================================================== 
-- (NSUInteger) joystickIndex
-{
-    return mJoystickIndex;
-}
+@synthesize joystickIndex=mJoystickIndex;
 
 - (void) setJoystickIndex: (NSUInteger) theJoystickIndex
 {
@@ -156,19 +150,6 @@
 {
     ButtonState * state = [mJoystickButtons objectAtIndex: buttonNumber];
     [state setPressed: NO];
-}
-
-@end
-
-@implementation JoystickPaneController (Private)
-
-- (void) setJoysticks: (NSArray *) theJoysticks
-{
-    if (mJoysticks != theJoysticks)
-    {
-        [mJoysticks release];
-        mJoysticks = [theJoysticks retain];
-    }
 }
 
 @end

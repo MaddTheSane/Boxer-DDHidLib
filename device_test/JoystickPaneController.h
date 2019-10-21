@@ -30,22 +30,21 @@
 {
     IBOutlet NSArrayController * mJoysticksController;
 
-    NSArray * mJoysticks;
+    NSArray<DDHidJoystick*> * mJoysticks;
     NSMutableArray * mJoystickButtons;
     int mXAxis;
     int mYAxis;
     NSUInteger mJoystickIndex;
 
     // Don't retain these
-    DDHidJoystick * mCurrentJoystick;
+    __unsafe_unretained DDHidJoystick * mCurrentJoystick;
 }
 
-- (NSArray *) joysticks;
+@property (readonly, copy) NSArray<DDHidJoystick*> *joysticks;
 
 - (NSArray *) joystickButtons;
 
-- (NSUInteger) joystickIndex;
-- (void) setJoystickIndex: (NSUInteger) theJoystickIndex;
+@property (nonatomic) NSUInteger joystickIndex;
 
 - (int) xAxis;
 - (int) yAxis;
