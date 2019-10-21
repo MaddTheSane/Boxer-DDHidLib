@@ -43,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
     id<DDHidKeyboardBarcodeScannerDelegate> mDelegate;
 }
 
-+ (nullable NSArray<DDHidKeyboardBarcodeScanner*> *) allPossibleKeyboardBarcodeScanners;
+@property (readonly, copy, class, nullable) NSArray<DDHidKeyboardBarcodeScanner*> *allPossibleKeyboardBarcodeScanners;
 
 - (nullable instancetype) initWithDevice: (io_object_t) device error: (NSError **) error_;
 

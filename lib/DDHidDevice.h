@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark -
 #pragma mark Finding Devices
 
-+ (nullable NSArray<DDHidDevice*> *) allDevices;
+@property (readonly, copy, class, nullable) NSArray<DDHidDevice*> *allDevices;
 
 + (nullable NSArray<DDHidDevice*> *) allDevicesMatchingUsagePage: (unsigned) usagePage
                                                          usageId: (unsigned) usageId

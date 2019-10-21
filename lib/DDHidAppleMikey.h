@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
     id<DDHidAppleMikeyDelegate> mDelegate;
 }
 
-+ (nullable NSArray<DDHidAppleMikey*> *) allMikeys;
+@property (readonly, copy, class, nullable) NSArray<DDHidAppleMikey*> *allMikeys;
 
 - (nullable instancetype) initWithDevice: (io_object_t) device error: (NSError **) error_;
 

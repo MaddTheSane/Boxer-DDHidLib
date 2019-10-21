@@ -60,9 +60,9 @@ typedef NS_ENUM(NSInteger, DDHidAppleRemoteEventIdentifier)
     id<DDHidAppleRemoteDelegate> mDelegate;
 }
 
-+ (nullable NSArray<DDHidAppleRemote*> *) allRemotes;
+@property (readonly, copy, class, nullable) NSArray<DDHidAppleRemote*> *allRemotes;
 
-+ (nullable DDHidAppleRemote *) firstRemote;
+@property (readonly, retain, class, nullable) DDHidAppleRemote *firstRemote;
 
 - (nullable instancetype) initWithDevice: (io_object_t) device error: (NSError **) error_;
 

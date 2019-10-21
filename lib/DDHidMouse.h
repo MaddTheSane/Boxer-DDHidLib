@@ -43,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
     id<DDHidMouseDelegate> mDelegate;
 }
 
-+ (nullable NSArray<DDHidMouse*> *) allMice;
+@property (readonly, copy, class, nullable) NSArray<DDHidMouse*> *allMice;
 
 - (nullable instancetype) initWithDevice: (io_object_t) device error: (NSError **) error_;
 

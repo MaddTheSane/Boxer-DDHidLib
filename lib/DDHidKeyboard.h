@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
     id<DDHidKeyboardDelegate> mDelegate;
 }
 
-+ (nullable NSArray<DDHidKeyboard*> *) allKeyboards;
+@property (readonly, copy, class, nullable) NSArray<DDHidKeyboard*> *allKeyboards;
 
 - (nullable instancetype) initWithDevice: (io_object_t) device error: (NSError **) error_;
 

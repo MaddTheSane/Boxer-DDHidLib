@@ -57,7 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) NSInteger countOfPovElements;
 - (DDHidElement *) objectInPovElementsAtIndex: (NSInteger)index;
 
-@property (readonly, assign) NSArray<DDHidElement*> *allElements;
+@property (readonly, copy) NSArray<DDHidElement*> *allElements;
 
 - (BOOL) addElement: (DDHidElement *) element;
 
@@ -86,7 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (readonly) NSInteger numberOfButtons;
 
-@property(readonly, retain) NSArray *buttonElements;
+@property(readonly, retain) NSArray<DDHidElement*> *buttonElements;
 
 #pragma mark -
 #pragma mark Sticks - indexed accessors
