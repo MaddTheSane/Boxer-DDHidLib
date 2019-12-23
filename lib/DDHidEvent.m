@@ -29,7 +29,7 @@
 
 + (instancetype) eventWithIOHIDEvent: (IOHIDEventStruct *) event;
 {
-    return [[[self alloc] initWithIOHIDEvent: event] autorelease];
+    return [[self alloc] initWithIOHIDEvent: event];
 }
 
 - (instancetype) initWithIOHIDEvent: (IOHIDEventStruct *) event;

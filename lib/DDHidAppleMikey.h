@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
     @package
     NSMutableArray * mPressElements;
     
-    id<DDHidAppleMikeyDelegate> mDelegate;
+    __weak id<DDHidAppleMikeyDelegate> mDelegate;
 }
 
 @property (readonly, copy, class, nullable) NSArray<DDHidAppleMikey*> *allMikeys;
@@ -56,7 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark -
 #pragma mark Asynchronous Notification
 
-@property (assign, nullable) id<DDHidAppleMikeyDelegate> delegate;
+@property (weak, nullable) id<DDHidAppleMikeyDelegate> delegate;
 
 - (void) addElementsToDefaultQueue;
 

@@ -32,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DDHidElement : NSObject
 {
     @package
+    IOHIDElementRef mElement;
     NSDictionary * mProperties;
     DDHidUsage * mUsage;
     NSArray * mElements;
@@ -48,6 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSString *) stringForKey: (NSString *) key;
 
 @property (readonly) IOHIDElementCookie cookie;
+@property (readonly) IOHIDElementRef element;
 @property (readonly) unsigned cookieAsUnsigned;
 
 @property (readonly, retain) NSArray<DDHidElement*> *elements;

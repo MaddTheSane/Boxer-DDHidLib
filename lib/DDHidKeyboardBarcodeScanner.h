@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
     NSTimer *mBarcodeInputTimer;
     BOOL mIsLikelyKeyboardBarcodeScanner;
     
-    id<DDHidKeyboardBarcodeScannerDelegate> mDelegate;
+    __weak id<DDHidKeyboardBarcodeScannerDelegate> mDelegate;
 }
 
 @property (readonly, copy, class, nullable) NSArray<DDHidKeyboardBarcodeScanner*> *allPossibleKeyboardBarcodeScanners;
@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark -
 #pragma mark Asynchronous Notification
 
-@property (assign) id<DDHidKeyboardBarcodeScannerDelegate> delegate;
+@property (weak) id<DDHidKeyboardBarcodeScannerDelegate> delegate;
 
 - (void) addElementsToDefaultQueue;
 

@@ -70,7 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
     NSMutableArray * mButtonElements;
     NSMutableArray * mLogicalDeviceElements;
 
-    id<DDHidJoystickDelegate> mDelegate;
+    __weak id<DDHidJoystickDelegate> mDelegate;
 }
 
 @property (class, readonly, copy, nullable) NSArray<DDHidJoystick*> *allJoysticks;
@@ -99,7 +99,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark -
 #pragma mark Asynchronous Notification
 
-@property (assign, nullable) id<DDHidJoystickDelegate> delegate;
+@property (weak, nullable) id<DDHidJoystickDelegate> delegate;
 
 - (void) addElementsToDefaultQueue;
 

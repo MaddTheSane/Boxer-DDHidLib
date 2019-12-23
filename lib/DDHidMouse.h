@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
     DDHidElement * mWheelElement;
     NSMutableArray * mButtonElements;
     
-    id<DDHidMouseDelegate> mDelegate;
+    __weak id<DDHidMouseDelegate> mDelegate;
 }
 
 @property (readonly, copy, class, nullable) NSArray<DDHidMouse*> *allMice;
@@ -63,7 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark -
 #pragma mark Asynchronous Notification
 
-@property (assign, nullable) id<DDHidMouseDelegate> delegate;
+@property (weak, nullable) id<DDHidMouseDelegate> delegate;
 
 - (void) addElementsToDefaultQueue;
 

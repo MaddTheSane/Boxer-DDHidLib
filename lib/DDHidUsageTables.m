@@ -39,8 +39,6 @@ static DDHidUsageTables * sStandardUsageTables = nil;
             [[NSDictionary alloc] initWithContentsOfFile: usageTablesPath];
         sStandardUsageTables =
             [[DDHidUsageTables alloc] initWithLookupTables: lookupTables];
-        [sStandardUsageTables retain];
-        [lookupTables release];
     }
     
     return sStandardUsageTables;
@@ -52,13 +50,13 @@ static DDHidUsageTables * sStandardUsageTables = nil;
     if (self == nil)
         return nil;
     
-    mLookupTables = [lookupTables retain];
+    mLookupTables = [lookupTables copy];
     
     return self;
 }
 
 - (NSString *) descriptionForUsagePage: (unsigned) usagePage
-                                usage: (unsigned) usage
+                                 usage: (unsigned) usage
 {
     NSString * usagePageString = [NSString stringWithFormat: @"%u", usagePage];
     NSString * usageString = [NSString stringWithFormat: @"%u", usage];

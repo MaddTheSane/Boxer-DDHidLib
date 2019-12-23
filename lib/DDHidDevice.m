@@ -65,13 +65,11 @@
  
     if (![self initPropertiesWithError: error])
     {
-        [self release];
         return nil;
     }
     
     if (![self createDeviceInterfaceWithError: error])
     {
-        [self release];
         return nil;
     }
     
@@ -88,22 +86,10 @@
 //=========================================================== 
 - (void) dealloc
 {
-    [mDefaultQueue release];
-    if (mDeviceInterface != NULL)
-    {
-        (*mDeviceInterface)->close(mDeviceInterface);
-        (*mDeviceInterface)->Release(mDeviceInterface);
-    }
-    [mElementsByCookie release];
-    [mElements release];
-    [mUsages release];
-    [mPrimaryUsage release];
-    [mProperties release];
+    CFRelease(mDeviceRef);
     IOObjectRelease(mHidDevice);
     
     mProperties = nil;
-    mDeviceInterface = NULL;
-    [super dealloc];
 }
 
 #pragma mark -
@@ -137,7 +123,7 @@
     NSArray *retVal = nil;
     if(hidMatchDictionary) {
         NSMutableDictionary * objcMatchDictionary =
-            (NSMutableDictionary *) hidMatchDictionary;
+            (__bridge NSMutableDictionary *) hidMatchDictionary;
         [objcMatchDictionary ddhid_setObject: @(usagePage)
                                    forString: kIOHIDDeviceUsagePageKey];
         [objcMatchDictionary ddhid_setObject: @(usageId)
@@ -198,9 +184,9 @@
 
 @synthesize ioDevice = mHidDevice;
 
-- (IOHIDDeviceInterface122**) deviceInterface;
+- (IOHIDDeviceRef) deviceRef;
 {
-    return mDeviceInterface;
+    return mDeviceRef;
 }
 
 #pragma mark -
@@ -213,31 +199,36 @@
 
 - (void) openWithOptions: (IOOptionBits) options;
 {
-    NSXThrowError((*mDeviceInterface)->open(mDeviceInterface, options));
+    NSXThrowError(IOHIDDeviceOpen(mDeviceRef, options));
 }
 
 - (void) close;
 {
-    NSXThrowError((*mDeviceInterface)->close(mDeviceInterface));
+    [self closeWithOptions:kIOHIDOptionsTypeNone];
 }
+
+- (void) closeWithOptions:(IOOptionBits)options;
+{
+    NSXThrowError(IOHIDDeviceClose(mDeviceRef, options));
+}
+
 
 - (DDHidQueue *) createQueueWithSize: (unsigned) size;
 {
-    IOHIDQueueInterface ** queue =
-    (*mDeviceInterface)->allocQueue(mDeviceInterface);
+    IOHIDQueueRef queue = IOHIDQueueCreate(NULL, mDeviceRef, size, 0);
     if (queue == NULL)
         return nil;
-    return [[[DDHidQueue alloc] initWithHIDQueue: queue
-                                            size: size] autorelease];
+    return [[DDHidQueue alloc] initWithHIDQueue: queue
+                                           size: size];
 }
 
 - (long) getElementValue: (DDHidElement *) element;
 {
     IOHIDEventStruct event;
-    NSXThrowError((*mDeviceInterface)->getElementValue(mDeviceInterface,
-                                                       [element cookie],
-                                                       &event));
-    return event.value;
+    IOHIDValueRef theVal;
+    NSXThrowError(IOHIDDeviceGetValue(mDeviceRef, element.element, &theVal));
+    
+    return IOHIDValueGetIntegerValue(theVal);
 }
 
 #pragma mark -
@@ -257,7 +248,7 @@
     if (mListenInExclusiveMode)
         options = kIOHIDOptionsTypeSeizeDevice;
     [self openWithOptions: options];
-    mDefaultQueue = [[self createQueueWithSize: [self sizeOfDefaultQueue]] retain];
+    mDefaultQueue = [self createQueueWithSize: [self sizeOfDefaultQueue]];
     [mDefaultQueue setDelegate: self];
     [self addElementsToDefaultQueue];
     [mDefaultQueue startOnCurrentRunLoop];
@@ -269,7 +260,6 @@
         return;
     
     [mDefaultQueue stop];
-    [mDefaultQueue release];
     mDefaultQueue = nil;
     [self close];
 }
@@ -425,7 +415,6 @@
         {
             NSXRaiseError(error);
         }
-        [device autorelease];
         
         if (([device locationId] == 0) && skipZeroLocations)
             return;
@@ -444,7 +433,6 @@
             {
                 NSXRaiseError(error);
             }
-            [device autorelease];
             
             [devices addObject: device];
         }
@@ -474,17 +462,17 @@
 {
     NSError * error = nil;
     BOOL result = NO;
-    
+    NSArray * elementProperties;
     CFMutableDictionaryRef properties;
+    NSArray * usagePairs;
     NSXReturnError(IORegistryEntryCreateCFProperties(mHidDevice, &properties,
                                                      kCFAllocatorDefault, kNilOptions));
     if (error)
         goto done;
     
-    mProperties = (NSMutableDictionary *) properties;
-    NSArray * elementProperties = [mProperties ddhid_objectForString: kIOHIDElementKey];
+    mProperties = (NSMutableDictionary *) CFBridgingRelease(properties);
+    elementProperties = [mProperties ddhid_objectForString: kIOHIDElementKey];
     mElements = [DDHidElement elementsWithPropertiesArray: elementProperties];
-    [mElements retain];
     
     unsigned usagePage = [mProperties ddhid_unsignedIntForString: kIOHIDPrimaryUsagePageKey];
     unsigned usageId = [mProperties ddhid_unsignedIntForString: kIOHIDPrimaryUsageKey];
@@ -493,10 +481,8 @@
                                                   usageId: usageId];
     mUsages = [[NSMutableArray alloc] init];
     
-    NSArray * usagePairs = [mProperties ddhid_objectForString: kIOHIDDeviceUsagePairsKey];
-    NSEnumerator * e = [usagePairs objectEnumerator];
-    NSDictionary * usagePair;
-    while (usagePair = [e nextObject])
+    usagePairs = [mProperties ddhid_objectForString: kIOHIDDeviceUsagePairsKey];
+    for (NSDictionary * usagePair in usagePairs)
     {
         usagePage = [usagePair ddhid_unsignedIntForString: kIOHIDDeviceUsagePageKey];
         usageId = [usagePair ddhid_unsignedIntForString: kIOHIDDeviceUsageKey];
@@ -518,37 +504,26 @@ done:
 - (BOOL) createDeviceInterfaceWithError: (NSError **) error_;
 {
 	io_name_t className;
-	IOCFPlugInInterface ** plugInInterface = NULL;
-	SInt32 score = 0;
     NSError * error = nil;
     BOOL result = NO;
 	
-	mDeviceInterface = NULL;
+	mDeviceRef = NULL;
 	
 	NSXReturnError(IOObjectGetClass(mHidDevice, className));
     if (error)
         goto done;
-	
-	NSXReturnError(IOCreatePlugInInterfaceForService(mHidDevice,
-                                                     kIOHIDDeviceUserClientTypeID,
-                                                     kIOCFPlugInInterfaceID,
-													 &plugInInterface,
-													 &score));
-    if (error)
-        goto done;
     
     //Call a method of the intermediate plug-in to create the device interface
-    NSXReturnError((*plugInInterface)->QueryInterface(plugInInterface, CFUUIDGetUUIDBytes(kIOHIDDeviceInterfaceID), (LPVOID) &mDeviceInterface));
+    mDeviceRef = IOHIDDeviceCreate(NULL, mHidDevice);
+    if (!mDeviceRef) {
+        error = [NSError errorWithDomain:NSCocoaErrorDomain code:-1 userInfo:nil];
+    }
     if (error)
         goto done;
     
     result = YES;
     
 done:
-    if (plugInInterface != NULL)
-    {
-        (*plugInInterface)->Release(plugInInterface);
-    }
     if (error_)
         *error_ = error;
 	return result;

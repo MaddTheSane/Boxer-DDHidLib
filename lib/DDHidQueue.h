@@ -34,16 +34,15 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DDHidQueue : NSObject
 {
     @package
-    IOHIDQueueInterface ** mQueue;
+    IOHIDQueueRef mQueue;
     NSRunLoop * mRunLoop;
     BOOL mStarted;
     
-    id<DDHidQueueDelegate> mDelegate;
-    CFRunLoopSourceRef mEventSource;
+    __weak id<DDHidQueueDelegate> mDelegate;
 }
 
-- (nullable instancetype) initWithHIDQueue: (IOHIDQueueInterface *__nonnull*__nonnull) queue
-                             size: (unsigned) size;
+- (nullable instancetype) initWithHIDQueue: (IOHIDQueueRef CF_RELEASES_ARGUMENT) queue
+                                      size: (unsigned) size;
 
 - (void) addElement: (DDHidElement *) element;
 
@@ -51,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void) addElements: (NSArray<DDHidElement*> *) elements recursively: (BOOL) recursively;
 
-@property (assign, nullable) id<DDHidQueueDelegate> delegate;
+@property (weak, nullable) id<DDHidQueueDelegate> delegate;
 
 - (void) startOnCurrentRunLoop;
 
@@ -60,9 +59,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (readonly, getter=isStarted) BOOL started;
 
-- (BOOL) getNextEvent: (IOHIDEventStruct *) event;
+//- (BOOL) getNextEvent: (IOHIDEventStruct *) event;
 
-- (nullable DDHidEvent *) nextEvent;
+//- (nullable DDHidEvent *) nextEvent;
 
 @end
 

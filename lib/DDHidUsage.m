@@ -32,8 +32,7 @@
 + (instancetype) usageWithUsagePage: (unsigned) usagePage
                             usageId: (unsigned) usageId;
 {
-    return [[[self alloc] initWithUsagePage: usagePage usageId: usageId]
-        autorelease];
+    return [[self alloc] initWithUsagePage: usagePage usageId: usageId];
 }
 
 - (instancetype) initWithUsagePage: (unsigned) usagePage

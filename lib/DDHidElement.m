@@ -48,7 +48,7 @@
 + (DDHidElement *) elementWithProperties: (NSDictionary *) properties;
 {
     DDHidElement * element = [[DDHidElement alloc] initWithProperties: properties];
-    return [element autorelease];
+    return element;
 }
 
 - (id) initWithProperties: (NSDictionary *) properties;
@@ -57,16 +57,16 @@
     if (self == nil)
         return nil;
     
-    mProperties = [properties retain];
-    unsigned usagePage = [mProperties ddhid_unsignedIntForString: kIOHIDElementUsagePageKey];
-    unsigned usageId = [mProperties ddhid_unsignedIntForString: kIOHIDElementUsageKey];
+    mElement = IOHIDElementCreateWithDictionary(NULL, (__bridge CFDictionaryRef)properties);
+    mProperties = [properties copy];
+    unsigned usagePage = [properties ddhid_unsignedIntForString: kIOHIDElementUsagePageKey];
+    unsigned usageId = [properties ddhid_unsignedIntForString: kIOHIDElementUsageKey];
     mUsage = [[DDHidUsage alloc] initWithUsagePage: usagePage
                                            usageId: usageId];
     
     NSArray * elementsProperties =
         [mProperties ddhid_objectForString: kIOHIDElementKey];
-    mElements = [[DDHidElement elementsWithPropertiesArray: elementsProperties]
-        retain];
+    mElements = [DDHidElement elementsWithPropertiesArray: elementsProperties];
 
     return self;
 }
@@ -76,14 +76,7 @@
 //=========================================================== 
 - (void) dealloc
 {
-    [mProperties release];
-    [mUsage release];
-    [mElements release];
-    
-    mProperties = nil;
-    mUsage = nil;
-    mElements = nil;
-    [super dealloc];
+    CFRelease(mElement);
 }
 
 - (NSDictionary *) properties;
@@ -103,9 +96,10 @@
 
 - (IOHIDElementCookie) cookie;
 {
-    return (IOHIDElementCookie)
-    [mProperties ddhid_unsignedIntForString: kIOHIDElementCookieKey];
+    return IOHIDElementGetCookie(mElement);
 }
+
+@synthesize element=mElement;
 
 - (unsigned) cookieAsUnsigned;
 {
@@ -121,32 +115,32 @@
 
 - (NSString *) name;
 {
-    return [mProperties ddhid_objectForString: kIOHIDElementNameKey];
+    return (__bridge id)IOHIDElementGetName(mElement);
 }
 
 - (BOOL) hasNullState;
 {
-    return [mProperties ddhid_boolForString: kIOHIDElementHasNullStateKey];
+    return IOHIDElementHasNullState(mElement);
 }
 
 - (BOOL) hasPreferredState;
 {
-    return [mProperties ddhid_boolForString: kIOHIDElementHasNullStateKey];
+    return IOHIDElementHasPreferredState(mElement);
 }
 
 - (BOOL) isArray;
 {
-    return [mProperties ddhid_boolForString: kIOHIDElementIsArrayKey];
+    return IOHIDElementIsArray(mElement);
 }
 
 - (BOOL) isRelative;
 {
-    return [mProperties ddhid_boolForString: kIOHIDElementIsRelativeKey];
+    return IOHIDElementIsRelative(mElement);
 }
 
 - (BOOL) isWrapping;
 {
-    return [mProperties ddhid_boolForString: kIOHIDElementIsWrappingKey];
+    return IOHIDElementIsWrapping(mElement);
 }
 
 - (long) maxValue;

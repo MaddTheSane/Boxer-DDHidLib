@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 {
     @package
     io_object_t mHidDevice;
-	IOHIDDeviceInterface122** mDeviceInterface;
+	IOHIDDeviceRef mDeviceRef;
 
     NSMutableDictionary * mProperties;
     DDHidUsage * mPrimaryUsage;
@@ -75,7 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark I/O Kit Objects
 
 @property (readonly) io_object_t ioDevice;
-@property (readonly) IOHIDDeviceInterface122*__nonnull*__nonnull deviceInterface;
+@property (readonly) IOHIDDeviceRef deviceRef;
 
 #pragma mark -
 #pragma mark Operations
@@ -83,6 +83,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) open;
 - (void) openWithOptions: (IOOptionBits) options;
 - (void) close;
+- (void) closeWithOptions: (IOOptionBits) options;
 - (nullable DDHidQueue *) createQueueWithSize: (unsigned) size;
 - (long) getElementValue: (DDHidElement *) element;
 

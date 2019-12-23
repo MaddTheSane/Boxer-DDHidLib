@@ -69,17 +69,6 @@
     return self;
 }
 
-//=========================================================== 
-// dealloc
-//=========================================================== 
-- (void) dealloc
-{
-    [mKeyElements release];
-    
-    mKeyElements = nil;
-    [super dealloc];
-}
-
 #pragma mark -
 #pragma mark Keyboards Elements
 

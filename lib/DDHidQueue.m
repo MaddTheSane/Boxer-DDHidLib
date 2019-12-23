@@ -26,8 +26,9 @@
 #import "DDHidElement.h"
 #import "DDHidEvent.h"
 #import "NSXReturnThrowError.h"
+#import "DDHidValue.h"
 
-static void queueCallbackFunction(void* target,  IOReturn result, void* refcon,
+static void queueCallbackFunction(void* target,  IOReturn result,
                                   void* sender);
 
 @interface DDHidQueue ()
@@ -40,7 +41,7 @@ static void queueCallbackFunction(void* target,  IOReturn result, void* refcon,
 @synthesize delegate = mDelegate;
 @synthesize started = mStarted;
 
-- (id) initWithHIDQueue: (IOHIDQueueInterface **) queue
+- (id) initWithHIDQueue: (IOHIDQueueRef) queue
                    size: (unsigned) size;
 {
     self = [super init];
@@ -48,12 +49,6 @@ static void queueCallbackFunction(void* target,  IOReturn result, void* refcon,
         return nil;
     
     mQueue = queue;
-    IOReturn result = (*mQueue)->create(mQueue, 0, size);
-    if (result != kIOReturnSuccess)
-    {
-        [self release];
-        return nil;
-    }
      
     return self;
 }
@@ -61,15 +56,12 @@ static void queueCallbackFunction(void* target,  IOReturn result, void* refcon,
 - (void) dealloc;
 {
     [self stop];
-    (*mQueue)->dispose(mQueue);
-    (*mQueue)->Release(mQueue);
-    [super dealloc];
+    CFRelease(mQueue);
 }
 
 - (void) addElement: (DDHidElement *) element;
 {
-    IOHIDElementCookie cookie = [element cookie];
-    (*mQueue)->addElement(mQueue, cookie, 0);
+    IOHIDQueueAddElement(mQueue, element.element);
 }
 
 - (void) addElements: (NSArray *) elements;
@@ -97,13 +89,11 @@ static void queueCallbackFunction(void* target,  IOReturn result, void* refcon,
     if (mStarted)
         return;
     
-    mRunLoop = [runLoop retain];
+    mRunLoop = runLoop;
     
-    NSXThrowError((*mQueue)->createAsyncEventSource(mQueue, &mEventSource));
-    NSXThrowError((*mQueue)->setEventCallout(mQueue, queueCallbackFunction, self, NULL));
-    CFRunLoopAddSource([mRunLoop getCFRunLoop], mEventSource,
-                       kCFRunLoopDefaultMode);
-    (*mQueue)->start(mQueue);
+    IOHIDQueueScheduleWithRunLoop(mQueue, [mRunLoop getCFRunLoop], kCFRunLoopDefaultMode);
+    IOHIDQueueRegisterValueAvailableCallback(mQueue, queueCallbackFunction, (__bridge void * _Nullable)(self));
+    IOHIDQueueStart(mQueue);
     mStarted = YES;
 }
 
@@ -112,31 +102,21 @@ static void queueCallbackFunction(void* target,  IOReturn result, void* refcon,
     if (!mStarted)
         return;
     
-    CFRunLoopRemoveSource([mRunLoop getCFRunLoop], mEventSource, kCFRunLoopDefaultMode);
-    (*mQueue)->stop(mQueue);
-    [mRunLoop release];
-    CFRelease(mEventSource);
+    IOHIDQueueStop(mQueue);
+    IOHIDQueueUnscheduleFromRunLoop(mQueue, mRunLoop.getCFRunLoop, kCFRunLoopDefaultMode);
     
     mRunLoop = nil;
     mStarted = NO;
 }
 
-- (BOOL) getNextEvent: (IOHIDEventStruct *) event;
+- (DDHidValue*) nextValue;
 {
-    AbsoluteTime zeroTime = {0, 0};
-    IOReturn result = (*mQueue)->getNextEvent(mQueue, event, zeroTime, 0);
-    return (result == kIOReturnSuccess);
-}
-
-- (DDHidEvent *) nextEvent;
-{
-    AbsoluteTime zeroTime = {0, 0};
-    IOHIDEventStruct event;
-    IOReturn result = (*mQueue)->getNextEvent(mQueue, &event, zeroTime, 0);
-    if (result != kIOReturnSuccess)
-        return nil;
-    else
-        return [DDHidEvent eventWithIOHIDEvent: &event];
+    IOHIDValueRef val = IOHIDQueueCopyNextValue(mQueue);
+    if (val) {
+        return [DDHidValue valueWithValue:val];
+    } else {
+    return NULL;
+    }
 }
 
 - (void) handleQueueCallback;
@@ -149,12 +129,11 @@ static void queueCallbackFunction(void* target,  IOReturn result, void* refcon,
 
 @end
 
-static void queueCallbackFunction(void* target,  IOReturn result, void* refcon,
+static void queueCallbackFunction(void* target,  IOReturn result,
                                   void* sender)
 {
     @autoreleasepool {
-    DDHidQueue * queue = (DDHidQueue *) target;
-    [queue handleQueueCallback];
+        DDHidQueue * queue = (__bridge DDHidQueue *) target;
+        [queue handleQueueCallback];
     }
-    
 }

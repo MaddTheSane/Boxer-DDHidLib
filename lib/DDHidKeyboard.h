@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
     @package
     NSMutableArray * mKeyElements;
     
-    id<DDHidKeyboardDelegate> mDelegate;
+    __weak id<DDHidKeyboardDelegate> mDelegate;
 }
 
 @property (readonly, copy, class, nullable) NSArray<DDHidKeyboard*> *allKeyboards;
@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark -
 #pragma mark Asynchronous Notification
 
-@property (assign, nullable) id<DDHidKeyboardDelegate> delegate;
+@property (weak, nullable) id<DDHidKeyboardDelegate> delegate;
 
 - (void) addElementsToDefaultQueue;
 

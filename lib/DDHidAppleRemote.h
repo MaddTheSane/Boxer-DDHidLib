@@ -57,7 +57,7 @@ typedef NS_ENUM(NSInteger, DDHidAppleRemoteEventIdentifier)
     DDHidElement * mIdElement;
     int mRemoteId;
 
-    id<DDHidAppleRemoteDelegate> mDelegate;
+    __weak id<DDHidAppleRemoteDelegate> mDelegate;
 }
 
 @property (readonly, copy, class, nullable) NSArray<DDHidAppleRemote*> *allRemotes;
@@ -69,7 +69,7 @@ typedef NS_ENUM(NSInteger, DDHidAppleRemoteEventIdentifier)
 #pragma mark -
 #pragma mark Asynchronous Notification
 
-@property (assign, nullable) id<DDHidAppleRemoteDelegate> delegate;
+@property (weak, nullable) id<DDHidAppleRemoteDelegate> delegate;
 
 - (void) addElementsToDefaultQueue;
 
