@@ -114,10 +114,7 @@
 
 @synthesize usage = mUsage;
 
-- (NSArray *) elements;
-{
-    return mElements;
-}
+@synthesize elements = mElements;
 
 - (NSString *) name;
 {
