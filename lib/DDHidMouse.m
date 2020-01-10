@@ -181,23 +181,23 @@
     DDHidValue * event;
     while ((event = [hidQueue nextValue]))
     {
-        IOHIDElementRef cookie = [event getElement];
+        IOHIDElementCookie cookie = [event elementCookie];
         NSInteger value = [event integerValue];
-        if ([[self xElement] isEqualToElement:cookie])
+        if (cookie == [[self xElement] cookie])
         {
             if (value != 0)
             {
                 [self ddhidMouse: self xChanged: value];
             }
         }
-        else if ([[self yElement] isEqualToElement:cookie])
+        else if (cookie == [[self yElement] cookie])
         {
             if (value != 0)
             {
                 [self ddhidMouse: self yChanged: value];
             }
         }
-        else if ([[self wheelElement] isEqualToElement:cookie])
+        else if (cookie == [[self wheelElement] cookie])
         {
             if (value != 0)
             {
@@ -209,7 +209,7 @@
             NSInteger i = 0;
             for (i = 0; i < [[self buttonElements] count]; i++)
             {
-                if ([[[self buttonElements] objectAtIndex: i] isEqualToElement:cookie])
+                if (cookie == [[[self buttonElements] objectAtIndex: i] cookie])
                     break;
             }
             
@@ -223,8 +223,8 @@
             }
             else
             {
-                //DDHidElement * element = [self elementForCookie: [event elementCookie]];
-                //NSLog(@"Element: %@, value: %d", [[element usage] usageName], (int)[event value]);
+                DDHidElement * element = [self elementForCookie: [event elementCookie]];
+                NSLog(@"Element: %@, value: %d", [[element usage] usageName], (int)[event value]);
             }
         }
     }

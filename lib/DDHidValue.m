@@ -29,6 +29,16 @@
     return IOHIDValueGetElement(mValue);
 }
 
+- (IOHIDElementCookie)elementCookie
+{
+    return IOHIDElementGetCookie([self getElement]);
+}
+
+- (UInt32)elementCookieAsUnsigned;
+{
+    return (UInt32)[self elementCookie];
+}
+
 - (uint64_t)timeStamp
 {
     return IOHIDValueGetTimeStamp(mValue);

@@ -26,6 +26,7 @@
 #import "DDHidUsage.h"
 #import "DDHidElement.h"
 #import "DDHidQueue.h"
+#import "DDHidValue.h"
 #import "NSDictionary+DDHidExtras.h"
 #import "NSXReturnThrowError.h"
 
@@ -371,6 +372,17 @@
 {
     NSNumber * n = [NSNumber numberWithUnsignedInt: (unsigned) cookie];
     return [mElementsByCookie objectForKey: n];
+}
+
+- (nullable DDHidElement *) elementForValue: (DDHidValue*) val;
+{
+    return [self elementForRawElement:[val getElement]];
+}
+
+- (nullable DDHidElement *) elementForRawElement: (IOHIDElementRef) rawElem;
+{
+    IOHIDElementCookie cookie = IOHIDElementGetCookie(rawElem);
+    return [self elementForCookie:cookie];
 }
 
 - (DDHidUsage *) primaryUsage;

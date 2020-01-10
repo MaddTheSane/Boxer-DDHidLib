@@ -330,7 +330,7 @@
             }
             else
             {
-                DDHidElement * element = [self elementForCookie: [event elementCookie]];
+                DDHidElement * element = [self elementForValue: event];
                 NSLog(@"Element: %@, value: %d", [[element usage] usageName], (int)[event value]);
             }
         }

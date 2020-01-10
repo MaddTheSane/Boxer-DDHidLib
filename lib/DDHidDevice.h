@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class DDHidUsage;
 @class DDHidElement;
 @class DDHidQueue;
+@class DDHidValue;
 
 @interface DDHidDevice : NSObject
 {
@@ -105,6 +106,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (readonly, retain) NSArray<DDHidElement*> *elements;
 - (nullable DDHidElement *) elementForCookie: (IOHIDElementCookie) cookie;
+- (nullable DDHidElement *) elementForValue: (DDHidValue*) val;
+- (nullable DDHidElement *) elementForRawElement: (IOHIDElementRef) cookie;
 
 @property (readonly, assign) NSString *productName;
 @property (readonly, assign) NSString *manufacturer;

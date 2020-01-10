@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) IOHIDElementRef element;
 @property (readonly) unsigned cookieAsUnsigned;
 
-@property (readonly, retain) NSArray<DDHidElement*> *elements;
+@property (readonly, retain, nullable) NSArray<DDHidElement*> *elements;
 @property (readonly, retain) DDHidUsage *usage;
 @property (readonly, copy) NSString *name;
 @property (readonly) BOOL hasNullState;

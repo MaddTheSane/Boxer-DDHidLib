@@ -25,6 +25,9 @@ CF_IMPLICIT_BRIDGING_ENABLED
 
 - (IOHIDElementRef)getElement CF_RETURNS_NOT_RETAINED;
 
+- (IOHIDElementCookie)elementCookie;
+- (UInt32)elementCookieAsUnsigned;
+
 @property (readonly) uint64_t timeStamp;
 
 @property (readonly) NSInteger length;

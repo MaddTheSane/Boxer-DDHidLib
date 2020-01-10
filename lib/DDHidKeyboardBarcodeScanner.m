@@ -155,7 +155,7 @@
     DDHidValue * event;
     while ((event = [hidQueue nextValue]))
     {
-        DDHidElement * element = [self elementForCookie: [event elementCookie]];
+        DDHidElement * element = [self elementForValue: event];
         unsigned usageId = [[element usage] usageId];
         NSInteger value = [event integerValue];
         if (value == 1) // key down

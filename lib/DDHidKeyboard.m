@@ -145,7 +145,7 @@
     DDHidValue * event;
     while ((event = [hidQueue nextValue]))
     {
-        DDHidElement * element = [self elementForCookie: [event elementCookie]];
+        DDHidElement * element = [self elementForValue: event];
         unsigned usageId = [[element usage] usageId];
         SInt32 value = [event integerValue];
         if (value == 1)
