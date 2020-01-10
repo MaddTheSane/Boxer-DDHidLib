@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark -
 #pragma mark Asynchronous Notification
 
-@property (assign) id<DDHidKeyboardBarcodeScannerDelegate> delegate;
+@property (assign, nullable) id<DDHidKeyboardBarcodeScannerDelegate> delegate;
 
 - (void) addElementsToDefaultQueue;
 
