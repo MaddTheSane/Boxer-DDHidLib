@@ -33,7 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
     NSDictionary * mLookupTables;
 }
 
-+ (instancetype) standardUsageTables;
++ (DDHidUsageTables*) standardUsageTables;
+@property (readonly, class) DDHidUsageTables *standardUsageTables;
 
 - (instancetype) initWithLookupTables: (NSDictionary *) lookupTables;
 
