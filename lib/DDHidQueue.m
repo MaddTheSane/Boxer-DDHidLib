@@ -24,7 +24,6 @@
 
 #import "DDHidQueue.h"
 #import "DDHidElement.h"
-#import "DDHidEvent.h"
 #import "NSXReturnThrowError.h"
 #import "DDHidValue.h"
 

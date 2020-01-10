@@ -26,7 +26,7 @@
 #import "DDHidUsage.h"
 #import "DDHidElement.h"
 #import "DDHidQueue.h"
-#import "DDHidEvent.h"
+#import "DDHidValue.h"
 #include <IOKit/hid/IOHIDUsageTables.h>
 
 
@@ -178,11 +178,11 @@
 
 - (void) ddhidQueueHasEvents: (DDHidQueue *) hidQueue;
 {
-    DDHidEvent * event;
-    while ((event = [hidQueue nextEvent]))
+    DDHidValue * event;
+    while ((event = [hidQueue nextValue]))
     {
         IOHIDElementCookie cookie = [event elementCookie];
-        SInt32 value = [event value];
+        NSInteger value = [event integerValue];
         if (cookie == [[self xElement] cookie])
         {
             if (value != 0)

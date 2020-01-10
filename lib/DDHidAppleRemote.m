@@ -29,7 +29,7 @@
 #import "DDHidElement.h"
 #import "DDHidUsage.h"
 #import "DDHidQueue.h"
-#import "DDHidEvent.h"
+#import "DDHidValue.h"
 #import "NSDictionary+DDHidExtras.h"
 
 @interface DDHidAppleRemote ()
@@ -169,16 +169,16 @@
 	NSMutableString * cookieString = [NSMutableString string];
 	SInt32 sumOfValues = 0;
 
-    DDHidEvent * event;
-    while ((event = [hidQueue nextEvent]))
+    DDHidValue * event;
+    while ((event = [hidQueue nextValue]))
     {
         if ([event elementCookie] == [mIdElement cookie])
         {
-            [self setRemoteId: [event value]];
+            [self setRemoteId: [event integerValue]];
         }
         else
         {
-            sumOfValues += [event value];
+            sumOfValues += [event integerValue];
             [cookieString appendString:
                 [NSString stringWithFormat: @"%u_", [event elementCookieAsUnsigned]]];
         }

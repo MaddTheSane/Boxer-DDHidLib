@@ -28,7 +28,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class DDHidElement;
-@class DDHidEvent;
+@class DDHidValue;
 @protocol DDHidQueueDelegate;
 
 @interface DDHidQueue : NSObject
@@ -59,9 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (readonly, getter=isStarted) BOOL started;
 
-//- (BOOL) getNextEvent: (IOHIDEventStruct *) event;
-
-//- (nullable DDHidEvent *) nextEvent;
+- (nullable DDHidValue*)nextValue;
 
 @end
 

@@ -277,11 +277,11 @@
 
 - (void) ddhidQueueHasEvents: (DDHidQueue *) hidQueue;
 {
-    DDHidEvent * event;
-    while ((event = [hidQueue nextEvent]))
+    DDHidValue * event;
+    while ((event = [hidQueue nextValue]))
     {
         IOHIDElementCookie cookie = [event elementCookie];
-        SInt32 value = [event value];
+        SInt32 value = [event integerValue];
         DDHidElement * element;
         unsigned stick;
         unsigned otherAxis;

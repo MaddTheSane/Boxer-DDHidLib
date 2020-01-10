@@ -26,7 +26,7 @@
 #import "DDHidElement.h"
 #import "DDHidUsage.h"
 #import "DDHidQueue.h"
-#import "DDHidEvent.h"
+#import "DDHidValue.h"
 #include <IOKit/hid/IOHIDUsageTables.h>
 
 #define APPLE_MIC_ONLY 1
@@ -137,8 +137,8 @@
 
 - (void) ddhidQueueHasEvents: (DDHidQueue *) hidQueue;
 {
-    DDHidEvent * event;
-    while ((event = [hidQueue nextEvent]))
+    DDHidValue * event;
+    while ((event = [hidQueue nextValue]))
     {
         DDHidElement * element = [self elementForCookie: [event elementCookie]];
         unsigned usageId = [[element usage] usageId];
