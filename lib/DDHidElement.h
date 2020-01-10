@@ -63,6 +63,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) long maxValue;
 @property (readonly) long minValue;
 
+- (BOOL)isEqualToElement: (IOHIDElementRef)otherElem;
+
 - (NSComparisonResult) compareByUsage: (DDHidElement *) device;
 
 @end

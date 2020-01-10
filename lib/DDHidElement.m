@@ -174,4 +174,27 @@
     return NSOrderedSame;
 }
 
+- (BOOL)isEqual:(id)other
+{
+    if (other == self) {
+        return YES;
+    } else if (other == nil) {
+        return NO;
+    } else if ([other isKindOfClass:[DDHidElement class]]) {
+        return CFEqual(mElement, ((DDHidElement*)other)->mElement);
+    } else {
+        return NO;
+    }
+}
+
+- (NSUInteger)hash
+{
+    return CFHash(mElement);
+}
+
+- (BOOL)isEqualToElement: (IOHIDElementRef)otherElem
+{
+    return CFEqual(mElement, otherElem);
+}
+
 @end
