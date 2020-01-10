@@ -109,10 +109,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable DDHidElement *) elementForValue: (DDHidValue*) val;
 - (nullable DDHidElement *) elementForRawElement: (IOHIDElementRef) cookie;
 
-@property (readonly, assign) NSString *productName;
-@property (readonly, assign) NSString *manufacturer;
-@property (readonly, assign) NSString *serialNumber;
-@property (readonly, assign) NSString *transport;
+@property (readonly, copy) NSString *productName;
+@property (readonly, copy) NSString *manufacturer;
+@property (readonly, copy) NSString *serialNumber;
+@property (readonly, copy) NSString *transport;
 @property (readonly) long vendorId;
 @property (readonly) long productId;
 @property (readonly) long version;
@@ -120,7 +120,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) long usagePage;
 @property (readonly) long usage;
 @property (readonly, retain) DDHidUsage *primaryUsage;
-@property (readonly, assign) NSArray<DDHidUsage*> *usages;
+@property (readonly, copy) NSArray<DDHidUsage*> *usages;
 
 - (NSComparisonResult) compareByLocationId: (DDHidDevice *) device;
 

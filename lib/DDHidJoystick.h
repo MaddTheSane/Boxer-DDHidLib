@@ -42,8 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
     NSMutableArray<DDHidElement*> * mPovElements;
 }
 
-@property (readonly, retain) DDHidElement *xAxisElement;
-@property (readonly, retain) DDHidElement *yAxisElement;
+@property (readonly, retain, nullable) DDHidElement *xAxisElement;
+@property (readonly, retain, nullable) DDHidElement *yAxisElement;
 
 #pragma mark -
 #pragma mark StickElements - indexed accessors

@@ -44,6 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly, copy) NSString *usageNameWithIds;
 
 - (NSString *) description;
+@property (readonly, copy) NSString *description;
 
 - (BOOL) isEqualToUsagePage: (unsigned) usagePage usageId: (unsigned) usageId;
 
