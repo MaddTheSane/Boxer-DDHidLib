@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (readonly, retain) DDHidElement *xElement;
 @property (readonly, retain) DDHidElement *yElement;
-@property (readonly, retain) DDHidElement *wheelElement;
+@property (readonly, retain, nullable) DDHidElement *wheelElement;
 
 @property (readonly, retain) NSArray<DDHidElement*> *buttonElements;
 

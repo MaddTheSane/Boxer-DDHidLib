@@ -101,7 +101,7 @@
                                        withClass: self
                                skipZeroLocations: YES];
 
-    NSMutableArray * allJoysticks = [NSMutableArray arrayWithArray: joysticks];
+    NSMutableArray * allJoysticks = [NSMutableArray arrayWithArray: joysticks ?: @[]];
     [allJoysticks addObjectsFromArray: gamepads];
     [allJoysticks sortUsingSelector: @selector(compareByLocationId:)];
     return allJoysticks;
