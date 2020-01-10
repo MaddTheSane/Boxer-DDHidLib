@@ -23,6 +23,7 @@
  */
 
 #import "DDHidLib.h"
+#import "DDHidValue.h"
 #include <IOKit/hid/IOHIDUsageTables.h>
 
 @interface DDHidJoystick () <DDHidJoystickDelegate>

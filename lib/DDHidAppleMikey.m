@@ -142,7 +142,7 @@
     {
         DDHidElement * element = [self elementForCookie: [event elementCookie]];
         unsigned usageId = [[element usage] usageId];
-        SInt32 value = [event value];
+        SInt32 value = [event integerValue];
         [self ddhidAppleMikey:self press:usageId upOrDown:value==1];
     }
 }

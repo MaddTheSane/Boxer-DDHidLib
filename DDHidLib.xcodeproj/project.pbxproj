@@ -52,7 +52,7 @@
 		55193F110B93F36F004C0C98 /* NSXReturnThrowError.h in Headers */ = {isa = PBXBuildFile; fileRef = 55BE6DCB0B8033010085514D /* NSXReturnThrowError.h */; settings = {ATTRIBUTES = (); }; };
 		55193F120B93F371004C0C98 /* NSXReturnThrowError.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BE6DCC0B8033010085514D /* NSXReturnThrowError.m */; };
 		555C8E8F23B0ABAE0045FDBF /* DDHidValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 555C8E8D23B0ABAE0045FDBF /* DDHidValue.h */; };
-		555C8E9023B0ABAE0045FDBF /* DDHidValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 555C8E8D23B0ABAE0045FDBF /* DDHidValue.h */; };
+		555C8E9023B0ABAE0045FDBF /* DDHidValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 555C8E8D23B0ABAE0045FDBF /* DDHidValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		555C8E9123B0ABAE0045FDBF /* DDHidValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 555C8E8E23B0ABAE0045FDBF /* DDHidValue.m */; };
 		555C8E9223B0ABAE0045FDBF /* DDHidValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 555C8E8E23B0ABAE0045FDBF /* DDHidValue.m */; };
 		556E1E690B5359F9002F709C /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 556E1E680B5359F9002F709C /* IOKit.framework */; };

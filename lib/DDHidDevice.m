@@ -224,7 +224,6 @@
 
 - (long) getElementValue: (DDHidElement *) element;
 {
-    IOHIDEventStruct event;
     IOHIDValueRef theVal;
     NSXThrowError(IOHIDDeviceGetValue(mDeviceRef, element.element, &theVal));
     

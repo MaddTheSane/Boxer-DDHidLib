@@ -23,6 +23,7 @@
  */
 
 #import "DDHidDevice.h"
+#import "DDHidValue.h"
 #import "DDHidElement.h"
 #import "DDHidUsage.h"
 #import "DDHidQueue.h"
