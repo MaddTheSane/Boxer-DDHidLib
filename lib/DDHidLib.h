@@ -22,15 +22,15 @@
  * SOFTWARE.
  */
 
-#import "DDHidDevice.h"
-#import "DDHidElement.h"
-#import "DDHidUsage.h"
-#import "DDHidQueue.h"
-#import "DDHidEvent.h"
-#import "DDHidUsageTables.h"
-#import "DDHidMouse.h"
-#import "DDHidJoystick.h"
-#import "DDHidKeyboard.h"
-#import "DDHidAppleRemote.h"
-#import "DDHidAppleMikey.h"
-#import "DDHidKeyboardBarcodeScanner.h"
+#import <DDHidLib/DDHidDevice.h>
+#import <DDHidLib/DDHidElement.h>
+#import <DDHidLib/DDHidUsage.h>
+#import <DDHidLib/DDHidQueue.h>
+#import <DDHidLib/DDHidEvent.h>
+#import <DDHidLib/DDHidUsageTables.h>
+#import <DDHidLib/DDHidMouse.h>
+#import <DDHidLib/DDHidJoystick.h>
+#import <DDHidLib/DDHidKeyboard.h>
+#import <DDHidLib/DDHidAppleRemote.h>
+#import <DDHidLib/DDHidAppleMikey.h>
+#import <DDHidLib/DDHidKeyboardBarcodeScanner.h>

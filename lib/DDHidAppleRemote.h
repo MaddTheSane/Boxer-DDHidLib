@@ -24,7 +24,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "DDHidDevice.h"
+#import <DDHidLib/DDHidDevice.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

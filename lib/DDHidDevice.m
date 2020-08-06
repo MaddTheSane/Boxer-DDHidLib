@@ -118,8 +118,8 @@
     NSArray *retVal = nil;
     if(hidMatchDictionary) {
         retVal = [self allDevicesMatchingCFDictionary: hidMatchDictionary
-                                      withClass: [DDHidDevice class]
-                              skipZeroLocations: NO];
+                                            withClass: [DDHidDevice class]
+                                    skipZeroLocations: NO];
         //CFRelease(hidMatchDictionary);//dont free, it is freed by IOServiceGetMatchingServices
     }
     return retVal ? [NSArray arrayWithArray:retVal] : nil;
@@ -253,9 +253,9 @@
     if ([self isListening])
         return;
     
-    UInt32 options = kIOHIDOptionsTypeNone;
+    IOHIDOptionsType options = kIOHIDOptionsTypeNone;
     if (mListenInExclusiveMode)
-        options = kIOHIDOptionsTypeSeizeDevice;
+        options |= kIOHIDOptionsTypeSeizeDevice;
     [self openWithOptions: options];
     mDefaultQueue = [[self createQueueWithSize: [self sizeOfDefaultQueue]] retain];
     [mDefaultQueue setDelegate: self];

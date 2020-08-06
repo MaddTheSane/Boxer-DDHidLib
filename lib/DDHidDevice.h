@@ -40,9 +40,9 @@ NS_ASSUME_NONNULL_BEGIN
     io_object_t mHidDevice;
 	IOHIDDeviceInterface122** mDeviceInterface;
 
-    NSMutableDictionary * mProperties;
+    NSMutableDictionary<NSString*,id> * mProperties;
     DDHidUsage * mPrimaryUsage;
-    NSMutableArray * mUsages;
+    NSMutableArray<DDHidUsage*> * mUsages;
     NSArray<DDHidElement*> * mElements;
     NSMutableDictionary * mElementsByCookie;
     BOOL mListenInExclusiveMode;
@@ -100,7 +100,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark -
 #pragma mark Properties
 
-@property (readonly, retain) NSDictionary *properties;
+@property (readonly, retain) NSDictionary<NSString*,id> *properties;
 
 @property (readonly, retain) NSArray<DDHidElement*> *elements;
 - (nullable DDHidElement *) elementForCookie: (IOHIDElementCookie) cookie;
