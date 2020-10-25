@@ -701,6 +701,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = DD;
 				LastSwiftUpdateCheck = 1110;
 				LastUpgradeCheck = 1110;
 				TargetAttributes = {
