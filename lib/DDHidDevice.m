@@ -494,9 +494,7 @@
     mUsages = [[NSMutableArray alloc] init];
     
     NSArray * usagePairs = [mProperties ddhid_objectForString: kIOHIDDeviceUsagePairsKey];
-    NSEnumerator * e = [usagePairs objectEnumerator];
-    NSDictionary * usagePair;
-    while (usagePair = [e nextObject])
+    for (NSDictionary * usagePair in usagePairs)
     {
         usagePage = [usagePair ddhid_unsignedIntForString: kIOHIDDeviceUsagePageKey];
         usageId = [usagePair ddhid_unsignedIntForString: kIOHIDDeviceUsageKey];
